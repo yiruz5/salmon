@@ -360,8 +360,8 @@ textarea.input { min-height: 90px; resize: vertical; }
             <video controls="{{ true }}" autoPlay="{{ true }}" playsInline="{{ true }}" ref="{{ videoRef }}" style="width: 100%; height: 100%; display: block; object-fit: cover;"></video>
           </sc-if>
           <sc-if value="{{ showPlaceholder }}" hint-placeholder-val="{{ true }}">
-            <div style="position: absolute; inset: 0; display: grid; place-items: center; background: repeating-linear-gradient(135deg, var(--color-accent-2-200) 0 14px, var(--color-accent-2-100) 14px 28px);">
-              <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; background: var(--color-bg); padding: 6px 12px; border-radius: 999px; color: var(--color-accent-2-900); text-align: center;">9:16 video · {{ site.video }}</span>
+            <div style="position: absolute; inset: 0; pointer-events: none; display: grid; place-items: center; padding: 12px; background: repeating-linear-gradient(135deg, var(--color-accent-2-200) 0 14px, var(--color-accent-2-100) 14px 28px);">
+              <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; background: var(--color-bg); padding: 6px 12px; border-radius: 999px; color: var(--color-accent-2-900); text-align: center;">Video couldn't load · {{ site.video }}</span>
             </div>
           </sc-if>
         </div>
@@ -514,7 +514,7 @@ class Component extends DCLogic {
     const ready = () => { const k = n(); if (k && !this.state.videoReady[k]) this.setState(st => ({ videoReady: { ...st.videoReady, [k]: true } })); };
     el.addEventListener('loadeddata', ready);
     el.addEventListener('canplay', ready);
-    el.addEventListener('error', () => { const k = n(); if (k) this.setState(st => ({ videoFailed: { ...st.videoFailed, [k]: true } })); });
+    el.addEventListener('error', () => { const k = n(); if (k && el._src && /\.mp4$/.test(el._src)) { el._src = el._src.replace(/\.mp4$/, '.MP4'); el.src = el._src; el.play && el.play().catch(() => {}); return; } if (k) this.setState(st => ({ videoFailed: { ...st.videoFailed, [k]: true } })); });
   };
 
   geom() {
@@ -910,7 +910,7 @@ class Component extends DCLogic {
       openLab: () => this.setState({ labOpen: true, siteIdx: null }),
       closeLab: this.closeLab, closeSite: this.closeSite,
       stop: e => e.stopPropagation(),
-      hasSite: !!s, site, showVideo: !!s && !failed, showPlaceholder: !!s && (failed || !ready),
+      hasSite: !!s, site, showVideo: !!s && !failed, showPlaceholder: !!s && failed,
       videoRef: this.videoRef,
       isFirst: siteIdx === 0, isLast: siteIdx === SITES.length - 1,
       prevSite: () => this.go(siteIdx - 1), nextSite: () => this.go(siteIdx + 1),
