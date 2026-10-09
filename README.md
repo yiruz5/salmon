@@ -4,7 +4,7 @@ Interactive page: 10 recording sites along the Cedar River (Renton, WA), site vi
 
 ## Files GitHub Pages needs
 ```
-index.html          ← the site (copy of "Cedar River.dc.html")
+index.html          ← the site
 support.js
 .nojekyll           ← required: lets the _ds folder be served
 _ds/                ← design system styles
@@ -20,6 +20,5 @@ videos/             ← site-01.mp4 … site-10.mp4 (you add these)
 ## Notes
 - File and folder names are case-sensitive on GitHub Pages (`site-01.mp4`, not `Site-01.MP4`).
 - GitHub blocks files over 100 MB and warns over 50 MB; keep each video under ~50 MB.
-- If you edit `Cedar River.dc.html` in the design tool, re-copy it as `index.html`.
 
 River course © OpenStreetMap contributors.

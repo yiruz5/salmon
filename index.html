@@ -4,12 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<meta name="ext-resource-dependency" content="fish/coho.png" data-resource-id="fish-coho">
+<meta name="ext-resource-dependency" content="fish/sockeye.png" data-resource-id="fish-sockeye">
+<meta name="ext-resource-dependency" content="fish/chum.png" data-resource-id="fish-chum">
+<meta name="ext-resource-dependency" content="uploads/hydro_55.wav" data-resource-id="hydro_55">
+<meta name="ext-resource-dependency" content="uploads/hydro_100.wav" data-resource-id="hydro_100">
+<meta name="ext-resource-dependency" content="uploads/hydro_410.wav" data-resource-id="hydro_410">
+<meta name="ext-resource-dependency" content="uploads/electro_55.wav" data-resource-id="electro_55">
+<meta name="ext-resource-dependency" content="uploads/electro_100.wav" data-resource-id="electro_100">
+<meta name="ext-resource-dependency" content="uploads/electro_410.wav" data-resource-id="electro_410">
+<meta name="ext-resource-dependency" content="videos/site-01.mp4" data-resource-id="site-01">
+<meta name="ext-resource-dependency" content="videos/site-02.mp4" data-resource-id="site-02">
+<meta name="ext-resource-dependency" content="videos/site-03.mp4" data-resource-id="site-03">
+<meta name="ext-resource-dependency" content="videos/site-04.mp4" data-resource-id="site-04">
+<meta name="ext-resource-dependency" content="videos/site-05.mp4" data-resource-id="site-05">
+<meta name="ext-resource-dependency" content="videos/site-06.mp4" data-resource-id="site-06">
+<meta name="ext-resource-dependency" content="videos/site-07.mp4" data-resource-id="site-07">
+<meta name="ext-resource-dependency" content="videos/site-08.mp4" data-resource-id="site-08">
+<meta name="ext-resource-dependency" content="videos/site-09.mp4" data-resource-id="site-09">
+<meta name="ext-resource-dependency" content="videos/site-10.mp4" data-resource-id="site-10">
+<template id="__bundler_thumbnail" data-bg-color="#4a5a3a"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#4a5a3a"/><path d="M30 50 C40 38 58 36 70 44 L78 36 L76 50 L78 64 L70 56 C58 64 40 62 30 50 Z" fill="#c67139"/><circle cx="38" cy="48" r="2" fill="#201e1d"/></svg></template>
 </head>
 <body>
 <x-dc>
 <helmet>
   <link rel="stylesheet" href="_ds/organic-83166d74-9f86-4d7b-9251-ec9a55ac9333/styles.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&amp;family=Figtree:wght@400;600;700&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Instrument+Sans:wght@400;600;700&amp;display=swap">
   <script src="_ds/organic-83166d74-9f86-4d7b-9251-ec9a55ac9333/_ds_bundle.js"></script>
   <style>
     html, body { margin: 0; height: 100%; overflow: hidden; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
@@ -59,25 +79,7 @@
   </div>
   <button ref="{{ fishRef }}" onClick="{{ openLab }}" onMouseEnter="{{ fishEnter }}" onMouseLeave="{{ fishLeave }}" aria-label="Open the fish listening lab" style="position: absolute; left: 30%; top: 55%; transform: translate(-50%, -50%); z-index: 1; background: transparent; border: 0; padding: 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
     <span class="tag tag-accent" style="white-space: nowrap; box-shadow: var(--shadow-sm);">{{ fish.name }} · listen</span>
-    <svg ref="{{ fishBodyRef }}" width="78" height="30" viewBox="0 0 62 24" style="display: block; overflow: visible; filter: drop-shadow(0 5px 3px rgba(20, 30, 30, 0.28));">
-      <defs>
-        <linearGradient id="salmonBody" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" style="stop-color: {{ fish.back }};"></stop>
-          <stop offset="0.5" style="stop-color: {{ fish.side }};"></stop>
-          <stop offset="1" style="stop-color: {{ fish.belly }};"></stop>
-        </linearGradient>
-      </defs>
-      <path d="M34 5.4 L30.5 0.8 L25.5 5.7 Z" style="fill: {{ fish.back }};"></path>
-      <path d="M19.5 7.6 L17.6 5.4 L16.3 8.4 Z" style="fill: {{ fish.back }};"></path>
-      <path d="M33 18.6 L30 22.6 L27 18.4 Z" style="fill: {{ fish.back }};"></path>
-      <path d="M60 12 C58 8 52 6 44 5.5 C36 5 26 5.5 18 8 L12 10 L3.5 3 L6.8 12 L3.5 21 L12 14 L18 16 C26 18.5 36 19 44 18.5 C52 18 58 16 60 12 Z" style="fill: url(#salmonBody); stroke: oklch(0.28 0.02 60); stroke-width: 0.7; stroke-linejoin: round;"></path>
-      <path d="M31 7 L29 17.6 M37 6.2 L35 18.4 M43 6 L41 18.4" style="stroke: {{ fish.bar }}; stroke-width: 2.4; stroke-linecap: round; opacity: {{ fish.barOpacity }};"></path>
-      <path d="M60 12 C58 8 52 6 48.5 5.9 Q45.6 12 48.5 18.1 C52 18 58 16 60 12 Z" style="fill: {{ fish.head }}; opacity: 0.92;"></path>
-      <path d="M48.5 6.6 Q46.2 12 48.5 17.4" style="fill: none; stroke: oklch(0.28 0.02 60); stroke-width: 0.6; opacity: 0.7;"></path>
-      <path d="M45.5 14.5 L41 18.6 L40.5 14.6 Z" style="fill: {{ fish.back }}; opacity: 0.8;"></path>
-      <circle cx="54.4" cy="10.4" r="1.35" style="fill: oklch(0.18 0.01 60);"></circle>
-      <circle cx="54.8" cy="10" r="0.4" style="fill: oklch(0.95 0.01 80);"></circle>
-    </svg>
+    <img ref="{{ fishBodyRef }}" alt="{{ fish.name }} salmon" width="{{ fish.w }}" height="{{ fish.h }}" draggable="false" style="display: block; filter: drop-shadow(0 5px 3px rgba(20, 30, 30, 0.28));">
   </button>
 
   <sc-for list="{{ markers }}" as="m" hint-placeholder-count="10">
@@ -97,7 +99,7 @@
       <div class="dialog" role="dialog" aria-modal="true" aria-label="{{ site.aria }}" onClick="{{ stop }}" style="width: auto; max-width: min(860px, 100%); max-height: 94vh; overflow: auto; padding: var(--space-6); display: flex; flex-direction: row; flex-wrap: wrap; align-items: stretch; gap: var(--space-6);">
         <div style="position: relative; flex: none; height: min(calc(94vh - 2 * var(--space-6) - 8px), 760px); max-width: 100%; aspect-ratio: 9 / 16; border-radius: var(--radius-lg); overflow: hidden; background: var(--color-neutral-900); margin: 0 auto;">
           <sc-if value="{{ showVideo }}" hint-placeholder-val="{{ false }}">
-            <video src="{{ site.video }}" controls="{{ true }}" autoPlay="{{ true }}" playsInline="{{ true }}" ref="{{ videoRef }}" style="width: 100%; height: 100%; display: block; object-fit: cover;"></video>
+            <video controls="{{ true }}" autoPlay="{{ true }}" playsInline="{{ true }}" ref="{{ videoRef }}" style="width: 100%; height: 100%; display: block; object-fit: cover;"></video>
           </sc-if>
           <sc-if value="{{ showPlaceholder }}" hint-placeholder-val="{{ true }}">
             <div style="position: absolute; inset: 0; display: grid; place-items: center; background: repeating-linear-gradient(135deg, var(--color-accent-2-200) 0 14px, var(--color-accent-2-100) 14px 28px);">
@@ -197,27 +199,26 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;fontPair&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Organic (Caprasimo + Figtree)&quot;,&quot;Field journal (Young Serif + Instrument Sans)&quot;,&quot;Field guide (Bitter + Source Sans 3)&quot;,&quot;Editorial (DM Serif Display + DM Sans)&quot;,&quot;Sketchbook (Caveat Brush + Nunito)&quot;,&quot;Playful (Shrikhand + Nunito)&quot;],&quot;default&quot;:&quot;Field journal (Young Serif + Instrument Sans)&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;fishSwims&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;alwaysShowNames&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;spectrogramMaxHz&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;600&quot;,&quot;1000&quot;],&quot;default&quot;:&quot;600&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 // Site positions [lon, lat] are approximate — replace with your GPS points. Markers snap to the river.
 const SITES = [
-  { n: '01', name: 'Cedar River', ll: [-122.2135, 47.4945], note: '' },
-  { n: '02', name: 'A bush on the Cedar River', ll: [-122.2111, 47.4878], note: '' },
-  { n: '03', name: 'Cedar River, further up', ll: [-122.2070, 47.4847], note: '' },
-  { n: '04', name: 'Renton Library', ll: [-122.2021, 47.4819], note: '' },
-  { n: '05', name: 'Cedar River Park, under the highway', ll: [-122.1985, 47.4806], note: '' },
-  { n: '06', name: 'Cedar River Park', ll: [-122.1941, 47.4795], note: '' },
-  { n: '07', name: 'Riverview Park, site 1', ll: [-122.1834, 47.4767], note: '' },
-  { n: '08', name: 'Riverview Park, site 2', ll: [-122.1782, 47.4761], note: '' },
-  { n: '09', name: "Belmondo's Reach, point 1", ll: [-122.0696, 47.4478], note: '' },
-  { n: '10', name: "Belmondo's Reach, point 2", ll: [-122.0693, 47.4454], note: '' },
+  { n: '01', name: 'Cedar River', ll: [-122.2135, 47.4945], note: 'Video taken from a bridge on the Cedar River.' },
+  { n: '02', name: 'A bush on the Cedar River', ll: [-122.2111, 47.4878], note: 'Salmon like to hide under overhanging vegetation to rest.' },
+  { n: '03', name: 'Cedar River, further up', ll: [-122.2070, 47.4847], note: 'Another site along the Cedar River.' },
+  { n: '04', name: 'Renton Library', ll: [-122.2021, 47.4819], note: 'This site is right out of Renton Library. You can also see salmon from inside the library through their glass windows!' },
+  { n: '05', name: 'Cedar River Park, under the highway', ll: [-122.1985, 47.4806], note: 'This site is right under a highway. Do you hear the loud traffic noises? Salmon hear it too!' },
+  { n: '06', name: 'Cedar River Park', ll: [-122.1941, 47.4795], note: 'Cedar River Park, next to the community center.' },
+  { n: '07', name: 'Riverview Park, site 1', ll: [-122.1834, 47.4767], note: 'Riverview Park has a bridge where you can get a great view of salmon in water!' },
+  { n: '08', name: 'Riverview Park, site 2', ll: [-122.1782, 47.4761], note: 'This is looking from the other side of the bridge.' },
+  { n: '09', name: "Belmondo's Reach, point 1", ll: [-122.0696, 47.4478], note: 'Quiet and beautiful natural area.' },
+  { n: '10', name: "Belmondo's Reach, point 2", ll: [-122.0693, 47.4454], note: 'The water is so clear here, and salmon love it!' },
 ];
 // Cedar River centerline, upstream → mouth (OpenStreetMap relation 6818762, simplified)
 const RIVER = [[-122.0554,47.4358],[-122.0557,47.4371],[-122.0562,47.4379],[-122.0576,47.4386],[-122.0586,47.4387],[-122.0591,47.4385],[-122.0609,47.4375],[-122.0616,47.4374],[-122.0625,47.4381],[-122.0643,47.44],[-122.0654,47.44],[-122.0671,47.4391],[-122.0674,47.4392],[-122.0679,47.4397],[-122.0694,47.4409],[-122.07,47.4416],[-122.0717,47.4426],[-122.0719,47.4432],[-122.0717,47.4437],[-122.0693,47.4454],[-122.0689,47.4463],[-122.069,47.4471],[-122.0696,47.4478],[-122.0714,47.4483],[-122.073,47.4483],[-122.0735,47.4489],[-122.0728,47.4504],[-122.0714,47.4511],[-122.0713,47.4513],[-122.0723,47.4527],[-122.0739,47.4531],[-122.0748,47.4536],[-122.0758,47.4538],[-122.0769,47.4548],[-122.0771,47.4552],[-122.077,47.4555],[-122.0761,47.4562],[-122.0752,47.4568],[-122.0752,47.4572],[-122.0768,47.4578],[-122.0788,47.4582],[-122.0792,47.4584],[-122.0793,47.4586],[-122.0793,47.4599],[-122.0796,47.4609],[-122.0793,47.4628],[-122.0795,47.4634],[-122.0815,47.4648],[-122.0835,47.4665],[-122.0847,47.4667],[-122.0854,47.4666],[-122.0862,47.4663],[-122.0869,47.4652],[-122.0871,47.4641],[-122.0878,47.4632],[-122.0909,47.4623],[-122.0926,47.4624],[-122.0936,47.4628],[-122.0964,47.4634],[-122.0993,47.4629],[-122.1006,47.463],[-122.1024,47.4636],[-122.1036,47.4642],[-122.1041,47.4646],[-122.106,47.4654],[-122.1074,47.4663],[-122.1132,47.4648],[-122.1166,47.4647],[-122.1173,47.4641],[-122.1183,47.4636],[-122.121,47.4636],[-122.1229,47.4642],[-122.1231,47.4645],[-122.1245,47.4653],[-122.125,47.4654],[-122.1279,47.465],[-122.1293,47.4644],[-122.1302,47.4645],[-122.1314,47.465],[-122.1341,47.4666],[-122.1364,47.4675],[-122.1373,47.4678],[-122.14,47.468],[-122.1427,47.4698],[-122.1446,47.4707],[-122.1457,47.4707],[-122.1469,47.4704],[-122.1471,47.4702],[-122.1471,47.4695],[-122.1473,47.4692],[-122.1483,47.4691],[-122.1501,47.4697],[-122.1517,47.4699],[-122.1524,47.4704],[-122.1535,47.4716],[-122.1543,47.4717],[-122.1562,47.4714],[-122.1579,47.4708],[-122.1589,47.4699],[-122.1598,47.4689],[-122.1613,47.4661],[-122.1623,47.4657],[-122.1628,47.4657],[-122.1645,47.4663],[-122.1665,47.4673],[-122.1676,47.4685],[-122.1678,47.4692],[-122.1677,47.4708],[-122.1681,47.4716],[-122.1685,47.4721],[-122.1697,47.4729],[-122.1706,47.4732],[-122.1735,47.4734],[-122.1743,47.4737],[-122.177,47.4751],[-122.1776,47.4758],[-122.1782,47.4761],[-122.1804,47.4769],[-122.1827,47.4769],[-122.1834,47.4767],[-122.1846,47.476],[-122.1857,47.4758],[-122.1867,47.4758],[-122.1892,47.4765],[-122.19,47.4769],[-122.1903,47.4777],[-122.1908,47.4788],[-122.1912,47.479],[-122.1941,47.4795],[-122.1964,47.4796],[-122.1988,47.4806],[-122.2004,47.4809],[-122.2095,47.4861],[-122.2108,47.4872],[-122.2114,47.4883],[-122.2158,47.5006]];
 const BOUNDS = { lon0: -122.2165, lon1: -122.0685, lat0: 47.5006, lat1: 47.4405 };
 const STEP = 5;
+const RES = (id, path) => (window.__resources && window.__resources[id]) || path;
 const SPECIES = [
-  { name: 'Sockeye', back: 'oklch(0.46 0.16 25)', side: 'oklch(0.6 0.2 28)', belly: 'oklch(0.7 0.13 32)', head: 'oklch(0.5 0.1 150)', bar: 'transparent', barOpacity: 0 },
-  { name: 'Chinook', back: 'oklch(0.34 0.05 60)', side: 'oklch(0.5 0.08 35)', belly: 'oklch(0.74 0.03 70)', head: 'oklch(0.33 0.04 60)', bar: 'transparent', barOpacity: 0 },
-  { name: 'Coho', back: 'oklch(0.36 0.06 220)', side: 'oklch(0.6 0.16 15)', belly: 'oklch(0.8 0.03 70)', head: 'oklch(0.4 0.07 160)', bar: 'transparent', barOpacity: 0 },
-  { name: 'Chum', back: 'oklch(0.44 0.07 115)', side: 'oklch(0.6 0.08 110)', belly: 'oklch(0.84 0.02 90)', head: 'oklch(0.42 0.06 110)', bar: 'oklch(0.45 0.12 320)', barOpacity: 0.75 },
-  { name: 'Pink', back: 'oklch(0.42 0.03 95)', side: 'oklch(0.72 0.07 10)', belly: 'oklch(0.88 0.02 60)', head: 'oklch(0.42 0.03 95)', bar: 'transparent', barOpacity: 0 },
+  { name: 'Coho', img: RES('fish-coho', 'fish/coho.png'), w: 104, h: 33 },
+  { name: 'Sockeye', img: RES('fish-sockeye', 'fish/sockeye.png'), w: 96, h: 45 },
+  { name: 'Chum', img: RES('fish-chum', 'fish/chum.png'), w: 100, h: 43 },
 ];
 const FREQS = [{ hz: 55, label: 'low' }, { hz: 100, label: 'middle' }, { hz: 410, label: 'high' }];
 const KINDS = [
@@ -247,6 +248,8 @@ class Component extends DCLogic {
   };
 
   videoRef = el => {
+    this.videoEl = el;
+    if (el) this.syncVideo();
     if (!el || el._wired) return;
     el._wired = true;
     const n = () => this.state.siteIdx != null ? SITES[this.state.siteIdx].n : null;
@@ -428,7 +431,7 @@ class Component extends DCLogic {
     if (this.fontKey === key) return;
     this.fontKey = key;
     const [hd, bd, q] = P[key] || P['Organic (Caprasimo + Figtree)'];
-    if (q && !document.querySelector('link[data-font="' + q + '"]')) {
+    if (q && key !== 'Field journal (Young Serif + Instrument Sans)' && !document.querySelector('link[data-font="' + q + '"]')) {
       const l = document.createElement('link'); l.rel = 'stylesheet'; l.dataset.font = q;
       l.href = 'https://fonts.googleapis.com/css2?family=' + q + '&display=swap'; document.head.appendChild(l);
     }
@@ -470,7 +473,15 @@ class Component extends DCLogic {
     this.stopAll();
   }
 
+  syncVideo() {
+    const el = this.videoEl, i = this.state.siteIdx;
+    if (!el || i == null) return;
+    const src = RES('site-' + SITES[i].n, 'videos/site-' + SITES[i].n + '.mp4');
+    if (el._src !== src) { el._src = src; el.src = src; el.play && el.play().catch(() => {}); }
+  }
+
   componentDidUpdate(_, prev) {
+    this.syncVideo();
     this.applyFonts();
     if (this.state.labOpen && !prev.labOpen) {
       Object.keys(this.canvasRefs).forEach(k => this.clearCanvas(k));
@@ -531,13 +542,14 @@ class Component extends DCLogic {
     el.style.opacity = fade;
     el.style.pointerEvents = fade < 0.3 ? 'none' : 'auto';
     const na = ((p.ang + 540) % 360) - 180;
+    if (body) { const src = SPECIES[this.state.species].img; if (body._src !== src) { body._src = src; body.src = src; } }
     if (body) body.style.transform = 'rotate(' + na.toFixed(2) + 'deg)' + ' scale(' + (1 + jh * 0.16).toFixed(3) + ')' + (Math.abs(na) > 90 ? ' scaleY(-1)' : '') + ' rotate(' + (jh ? (0.5 - jt) * -30 : 0).toFixed(1) + 'deg) skewY(' + (Math.sin(ts / 260) * 3).toFixed(2) + 'deg)';
     if (body) body.style.filter = 'drop-shadow(0 ' + (5 + jh * 30).toFixed(1) + 'px ' + (3 + jh * 5).toFixed(1) + 'px rgba(20, 30, 30, ' + (0.28 - jh * 0.12).toFixed(2) + '))';
   }
 
   getAudio(key) {
     if (this.audios[key]) return this.audios[key];
-    const el = new Audio('uploads/' + key + '.wav');
+    const el = new Audio(RES(key, 'uploads/' + key + '.wav'));
     el.preload = 'metadata';
     const upd = () => this.setState(s => ({ times: { ...s.times, [key]: { cur: el.currentTime, dur: el.duration } } }));
     el.addEventListener('loadedmetadata', upd);
@@ -613,7 +625,7 @@ class Component extends DCLogic {
     const s = siteIdx != null ? SITES[siteIdx] : null;
     const site = s ? {
       n: s.n, name: s.name, aria: 'Site ' + s.n + ': ' + s.name,
-      video: 'videos/site-' + s.n + '.mp4',
+      video: RES('site-' + s.n, 'videos/site-' + s.n + '.mp4'),
       noteText: s.note || 'Add a note about this site: what you see and hear, and why it matters for salmon.',
     } : {};
     const failed = s ? !!videoFailed[s.n] : false, ready = s ? !!videoReady[s.n] : false;
