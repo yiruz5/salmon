@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/organic-83166d74-9f86-4d7b-9251-ec9a55ac9333/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700&display=swap">
+  <script src="_ds/organic-83166d74-9f86-4d7b-9251-ec9a55ac9333/_ds_bundle.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+    a { color: var(--color-accent-700); }
+    a:hover { color: var(--color-accent-900); }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; background: var(--color-bg);">
+
+  <nav class="nav" style="display: flex; align-items: center; gap: var(--space-4); padding: var(--space-3) clamp(20px, 5vw, 64px); flex-wrap: wrap;">
+    <span class="nav-brand" style="font-family: var(--font-heading); font-size: 20px;">Listening to the Cedar</span>
+    <div style="display: flex; gap: var(--space-4); margin-left: auto; font-size: 14px; font-weight: 600;">
+      <a href="#river" style="text-decoration: none;">The river</a>
+      <a href="#methods" style="text-decoration: none;">Methods</a>
+      <a href="#team" style="text-decoration: none;">Team</a>
+    </div>
+  </nav>
+
+  <header style="padding: clamp(32px, 6vw, 80px) clamp(20px, 5vw, 64px) var(--space-8); max-width: 820px; display: flex; flex-direction: column; gap: var(--space-4);">
+    <span class="tag tag-accent-2" style="align-self: flex-start;">A listening project on the Cedar River</span>
+    <h1 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(40px, 6vw, 72px); line-height: 1.02; margin: 0; text-wrap: balance;">What does a river sound like to a salmon?</h1>
+    <p style="font-size: 18px; line-height: 1.55; margin: 0; max-width: 620px; text-wrap: pretty;">Salmon swim up the Cedar River from Lake Washington every fall. We wanted to hear the river the way they might. So we filmed ten places along it, then looked at how a fish's brain responds to sound underwater.</p>
+    <div style="display: flex; gap: var(--space-2); flex-wrap: wrap; margin-top: var(--space-2);">
+      <a class="btn btn-primary" href="#river">Explore the river</a>
+      <button class="btn btn-secondary" onClick="{{ openLab }}">Hear what a fish hears</button>
+    </div>
+  </header>
+
+  <section id="river" data-screen-label="River" style="padding: 0 clamp(12px, 3vw, 40px) var(--space-8); display: flex; flex-direction: column; gap: var(--space-4);">
+    <div style="padding: 0 clamp(8px, 2vw, 24px); display: flex; flex-direction: column; gap: var(--space-2); max-width: 720px;">
+      <h2 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(28px, 3.4vw, 40px); margin: 0;">Ten places along the Cedar</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.5; text-wrap: pretty;">Click a site to watch and listen. Downstream is on the left, where the river meets Lake Washington. There's a fish swimming in the river too. Click it to hear what it hears.</p>
+    </div>
+
+    <div style="background: var(--color-surface); border-radius: var(--radius-lg); overflow-x: auto; overflow-y: hidden;">
+      <div style="position: relative; min-width: 880px; aspect-ratio: 1000 / 340;">
+        <svg viewBox="0 0 1000 340" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block;">
+          <path d="{{ riverPath }}" style="fill: none; stroke: var(--color-accent-2-200); stroke-width: 96; stroke-linecap: round; stroke-linejoin: round;"></path>
+          <path d="{{ riverPath }}" style="fill: none; stroke: var(--color-accent-2-400); stroke-width: 58; stroke-linecap: round; stroke-linejoin: round;"></path>
+          <path d="{{ riverPath }}" style="fill: none; stroke: var(--color-accent-2-300); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 2 26;"></path>
+        </svg>
+
+        <div style="position: absolute; left: 24px; bottom: 18px; font-size: 13px; font-weight: 600; color: var(--color-accent-2-800); display: flex; flex-direction: column; gap: 2px;">
+          <span>← Lake Washington</span>
+          <span style="font-weight: 400;">downstream</span>
+        </div>
+        <div style="position: absolute; right: 24px; top: 18px; font-size: 13px; font-weight: 600; color: var(--color-accent-2-800); display: flex; flex-direction: column; gap: 2px; text-align: right;">
+          <span>toward the Cascades →</span>
+          <span style="font-weight: 400;">upstream</span>
+        </div>
+
+        <button ref="{{ fishRef }}" onClick="{{ openLab }}" onMouseEnter="{{ fishEnter }}" onMouseLeave="{{ fishLeave }}" aria-label="Open the fish listening lab" style="position: absolute; left: 30%; top: 55%; transform: translate(-50%, -50%); z-index: 1; background: transparent; border: 0; padding: 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; color: {{ fish.stroke }};">
+          <span class="tag tag-accent" style="white-space: nowrap; box-shadow: var(--shadow-sm);">{{ fish.name }} · listen like a fish</span>
+          <span style="display: block;">
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="{{ fish.fill }}" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6s-7.56-2.53-8.5-6Z"></path><path d="M18 12v.5"></path><path d="M16 17.93a9.77 9.77 0 0 1 0-11.86"></path><path d="M7 10.67C7 8 5.58 6.97 3.73 6.5c-1.18 3.28-1.5 6.2-.5 9.5 1.85-.47 3.27-1.5 3.27-4.17"></path><path d="M10.46 7.26C10.2 5.88 9.17 4.24 8 3h5.8a2 2 0 0 1 1.98 1.67l.23 1.4"></path><path d="m16.01 17.93-.23 1.4A2 2 0 0 1 13.8 21H9.5a5.96 5.96 0 0 0 1.49-3.98"></path></svg>
+          </span>
+        </button>
+
+        <sc-for list="{{ markers }}" as="m" hint-placeholder-count="10">
+          <div style="position: absolute; left: {{ m.left }}; top: {{ m.top }}; transform: translate(-50%, -50%); z-index: 2;">
+            <button aria-label="{{ m.aria }}" onClick="{{ m.open }}" onMouseEnter="{{ m.enter }}" onMouseLeave="{{ leave }}" onFocus="{{ m.enter }}" onBlur="{{ leave }}" style="width: 46px; height: 46px; border-radius: 999px; border: 3px solid var(--color-accent); background: var(--color-bg); color: var(--color-accent-800); font-family: var(--font-heading); font-size: 16px; cursor: pointer; box-shadow: var(--shadow-md); display: grid; place-items: center; padding: 0;" style-hover="background: var(--color-accent); color: var(--color-bg);">{{ m.n }}</button>
+            <sc-if value="{{ m.labelBelow }}" hint-placeholder-val="{{ false }}">
+              <div style="position: absolute; left: 50%; top: 54px; transform: translateX(-50%); white-space: nowrap; pointer-events: none; background: var(--color-bg); border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-sm);">{{ m.name }}</div>
+            </sc-if>
+            <sc-if value="{{ m.labelAbove }}" hint-placeholder-val="{{ false }}">
+              <div style="position: absolute; left: 50%; bottom: 54px; transform: translateX(-50%); white-space: nowrap; pointer-events: none; background: var(--color-bg); border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-sm);">{{ m.name }}</div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="methods" data-screen-label="Methods" style="padding: var(--space-8) clamp(20px, 5vw, 64px); display: flex; flex-direction: column; gap: var(--space-4);">
+    <h2 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(28px, 3.4vw, 40px); margin: 0;">How we listened</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); max-width: 1100px;">
+      <div class="card" style="padding: var(--space-6); border-radius: var(--radius-lg);">
+        <span class="card-kicker">The river</span>
+        <span class="card-title" style="font-size: 22px;">Site videos</span>
+        <p class="card-body" style="font-size: 15px; line-height: 1.5;">[When and how the ten sites were filmed, and what equipment recorded the environmental sound.]</p>
+      </div>
+      <div class="card" style="padding: var(--space-6); border-radius: var(--radius-lg);">
+        <span class="card-kicker" style="color: var(--color-accent-2-700);">Hydrophone</span>
+        <span class="card-title" style="font-size: 22px;">Speaker in water</span>
+        <p class="card-body" style="font-size: 15px; line-height: 1.5;">[How the 55, 100 and 410 Hz tones were played through the underwater speaker and recorded.]</p>
+      </div>
+      <div class="card" style="padding: var(--space-6); border-radius: var(--radius-lg);">
+        <span class="card-kicker">Electrophysiology</span>
+        <span class="card-title" style="font-size: 22px;">Fish brain activity</span>
+        <p class="card-body" style="font-size: 15px; line-height: 1.5;">[Species, setup, and how brain responses were recorded. Note: these recordings were made in the lab, not in the Cedar River.]</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" data-screen-label="Team" style="padding: var(--space-8) clamp(20px, 5vw, 64px) calc(var(--space-8) * 2); display: flex; flex-direction: column; gap: var(--space-3); max-width: 720px;">
+    <h2 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(28px, 3.4vw, 40px); margin: 0;">Who made this</h2>
+    <p style="margin: 0; font-size: 16px; line-height: 1.55;">[Team names, lab or school, and thanks to anyone who helped.]</p>
+  </section>
+
+  <sc-if value="{{ hasSite }}" hint-placeholder-val="{{ false }}">
+    <div class="dialog-backdrop" onClick="{{ closeSite }}" style="z-index: 50;">
+      <div class="dialog" role="dialog" aria-modal="true" aria-label="{{ site.aria }}" onClick="{{ stop }}" style="width: min(920px, 100%); max-height: 92vh; overflow: auto; padding: var(--space-6);">
+        <div style="display: flex; align-items: flex-start; gap: var(--space-3);">
+          <div style="display: flex; flex-direction: column; gap: var(--space-1);">
+            <span class="card-kicker" style="font-size: 12px;">Site {{ site.n }} of 10</span>
+            <span class="dialog-title" style="font-size: 28px; line-height: 1.15;">{{ site.name }}</span>
+          </div>
+          <button class="btn btn-ghost btn-icon" onClick="{{ closeSite }}" aria-label="Close" style="margin-left: auto; color: var(--color-text);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+          </button>
+        </div>
+
+        <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 16 / 9; background: var(--color-neutral-900);">
+          <sc-if value="{{ showVideo }}" hint-placeholder-val="{{ false }}">
+            <video src="{{ site.video }}" controls="{{ true }}" autoPlay="{{ true }}" playsInline="{{ true }}" ref="{{ videoRef }}" style="width: 100%; height: 100%; display: block; object-fit: cover;"></video>
+          </sc-if>
+          <sc-if value="{{ showPlaceholder }}" hint-placeholder-val="{{ true }}">
+            <div style="position: absolute; inset: 0; display: grid; place-items: center; background: repeating-linear-gradient(135deg, var(--color-accent-2-200) 0 14px, var(--color-accent-2-100) 14px 28px);">
+              <span style="font-family: ui-monospace, Menlo, monospace; font-size: 13px; background: var(--color-bg); padding: 6px 14px; border-radius: 999px; color: var(--color-accent-2-900);">site video · {{ site.video }}</span>
+            </div>
+          </sc-if>
+        </div>
+
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 640px; text-wrap: pretty;">{{ site.noteText }}</p>
+
+        <div style="display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;">
+          <button class="btn btn-secondary" onClick="{{ prevSite }}" disabled="{{ isFirst }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+            Downstream
+          </button>
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <sc-for list="{{ dots }}" as="d" hint-placeholder-count="10">
+              <button onClick="{{ d.go }}" aria-label="{{ d.aria }}" style="width: {{ d.size }}; height: {{ d.size }}; border-radius: 999px; border: 0; padding: 0; cursor: pointer; background: {{ d.color }};"></button>
+            </sc-for>
+          </div>
+          <button class="btn btn-secondary" onClick="{{ nextSite }}" disabled="{{ isLast }}">
+            Upstream
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ labOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="dialog-backdrop" onClick="{{ closeLab }}" style="z-index: 50;">
+      <div class="dialog" role="dialog" aria-modal="true" aria-label="What a fish hears" onClick="{{ stop }}" style="width: min(960px, 100%); max-height: 92vh; overflow: auto; padding: var(--space-6); gap: var(--space-4);">
+        <div style="display: flex; align-items: flex-start; gap: var(--space-3);">
+          <div style="display: flex; flex-direction: column; gap: var(--space-2); max-width: 640px;">
+            <span class="dialog-title" style="font-size: 30px;">What a fish hears</span>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55; text-wrap: pretty;">We played three tones through an underwater speaker: 55, 100 and 410 Hz. Beside each one is the electrical activity from a fish's brain at the same frequency. Play them one after the other and listen for what changes.</p>
+            <span class="tag tag-neutral" style="align-self: flex-start; font-size: 12px;">The fish brain recordings were made in the lab, not in the Cedar River.</span>
+          </div>
+          <button class="btn btn-ghost btn-icon" onClick="{{ closeLab }}" aria-label="Close" style="margin-left: auto; color: var(--color-text);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+          </button>
+        </div>
+
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+            <div style="display: flex; align-items: baseline; gap: var(--space-2);">
+              <span style="font-family: var(--font-heading); font-size: 32px; line-height: 1;">{{ r.hz }}</span>
+              <span style="font-size: 14px; font-weight: 600;">Hz</span>
+              <span style="font-size: 14px; opacity: 0.75;">· {{ r.label }}</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-3);">
+              <sc-for list="{{ r.players }}" as="p" hint-placeholder-count="2">
+                <div style="background: var(--color-bg); border-radius: var(--radius-md); padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-3);">
+                  <div style="display: flex; align-items: center; gap: var(--space-3);">
+                    <button class="btn btn-primary btn-icon" onClick="{{ p.toggle }}" aria-label="{{ p.aria }}" style="width: 44px; height: 44px; border-radius: 999px; flex: none;">
+                      <sc-if value="{{ p.isPlaying }}" hint-placeholder-val="{{ false }}">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="4" width="4" height="16" rx="1"></rect><rect x="6" y="4" width="4" height="16" rx="1"></rect></svg>
+                      </sc-if>
+                      <sc-if value="{{ p.notPlaying }}" hint-placeholder-val="{{ true }}">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                      </sc-if>
+                    </button>
+                    <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+                      <span style="font-weight: 700; font-size: 15px;">{{ p.title }}</span>
+                      <span style="font-size: 13px; opacity: 0.75;">{{ p.sub }}</span>
+                    </div>
+                    <span style="margin-left: auto; font-size: 13px; font-variant-numeric: tabular-nums; opacity: 0.75;">{{ p.time }}</span>
+                  </div>
+                  <div style="position: relative; border-radius: var(--radius-sm); overflow: hidden;">
+                    <canvas ref="{{ p.canvasRef }}" width="480" height="120" style="width: 100%; height: 120px; display: block; background: var(--color-surface);"></canvas>
+                    <div style="position: absolute; left: 0; right: 0; bottom: {{ p.guide }}; border-top: 2px dashed {{ p.guideColor }}; opacity: 0.55; pointer-events: none;"></div>
+                    <span style="position: absolute; left: 8px; bottom: {{ p.guide }}; transform: translateY(-2px); white-space: nowrap; font-size: 11px; font-weight: 700; color: {{ p.guideColor }}; pointer-events: none;">{{ r.hz }} Hz</span>
+                    <span style="position: absolute; right: 8px; top: 6px; font-size: 11px; opacity: 0.6; pointer-events: none;">{{ maxHzLabel }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;fishSwims&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;alwaysShowNames&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;spectrogramMaxHz&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;600&quot;,&quot;1000&quot;],&quot;default&quot;:&quot;600&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const SITES = [
+  { n: '01', name: 'Cedar River', note: '' },
+  { n: '02', name: 'A bush on the Cedar River', note: '' },
+  { n: '03', name: 'Cedar River, further up', note: '' },
+  { n: '04', name: 'Renton Library', note: '' },
+  { n: '05', name: 'Cedar River Park, under the highway', note: '' },
+  { n: '06', name: 'Cedar River Park', note: '' },
+  { n: '07', name: 'Riverview Park, site 1', note: '' },
+  { n: '08', name: 'Riverview Park, site 2', note: '' },
+  { n: '09', name: "Belmondo's Reach, point 1", note: '' },
+  { n: '10', name: "Belmondo's Reach, point 2", note: '' },
+];
+const FREQS = [{ hz: 55, label: 'low' }, { hz: 100, label: 'middle' }, { hz: 410, label: 'high' }];
+const KINDS = [
+  { id: 'hydro', title: 'Speaker in water', sub: 'Hydrophone recording', ink: '--color-accent-2-700' },
+  { id: 'electro', title: 'Fish brain', sub: 'Neural activity', ink: '--color-accent-700' },
+];
+const SPECIES = [
+  { name: 'Sockeye', fill: 'oklch(0.6 0.19 28)', stroke: 'oklch(0.4 0.09 150)' },
+  { name: 'Chinook', fill: 'oklch(0.52 0.08 30)', stroke: 'oklch(0.3 0.04 70)' },
+  { name: 'Coho', fill: 'oklch(0.64 0.15 12)', stroke: 'oklch(0.34 0.05 240)' },
+  { name: 'Chum', fill: 'oklch(0.62 0.08 115)', stroke: 'oklch(0.4 0.11 320)' },
+  { name: 'Pink', fill: 'oklch(0.78 0.07 10)', stroke: 'oklch(0.42 0.03 95)' },
+];
+const W = 1000, H = 340;
+const yAt = x => 172 + 68 * Math.sin((x / W) * Math.PI * 2.3 + 0.35) + 14 * Math.sin((x / W) * Math.PI * 7.2);
+const siteX = i => 75 + i * (850 / 9);
+const fmt = t => { if (!isFinite(t)) t = 0; return Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0'); };
+
+class Component extends DCLogic {
+  state = { siteIdx: null, labOpen: false, hover: null, playing: null, times: {}, videoFailed: {} };
+  fishRef = React.createRef();
+  fishFlipRef = React.createRef();
+  canvasRefs = (() => { const r = {}; FREQS.forEach(f => KINDS.forEach(k => { r[k.id + '_' + f.hz] = React.createRef(); })); return r; })();
+  audios = {};
+  videoRef = el => {
+    if (!el || el._wired) return;
+    el._wired = true;
+    const n = () => this.state.siteIdx != null ? SITES[this.state.siteIdx].n : null;
+    const ready = () => { const k = n(); if (k && !this.state.videoReady?.[k]) this.setState(st => ({ videoReady: { ...(st.videoReady || {}), [k]: true } })); };
+    el.addEventListener('loadeddata', ready);
+    el.addEventListener('canplay', ready);
+    el.addEventListener('error', () => { const k = n(); if (k) this.setState(st => ({ videoFailed: { ...st.videoFailed, [k]: true } })); });
+  };
+  fishX = siteX(2) + 45; fishDir = 1; fishPaused = false;
+  riverPath = (() => { let d = ''; for (let x = -60; x <= W + 60; x += 10) d += (d ? ' L' : 'M') + x + ' ' + yAt(Math.max(0, Math.min(W, x))).toFixed(1); return d; })();
+
+  maxHz() { return Number(this.props.spectrogramMaxHz ?? 600); }
+
+  componentDidMount() {
+    const cs = getComputedStyle(document.documentElement);
+    this.colors = { bg: cs.getPropertyValue('--color-surface').trim() || '#ebddc5' };
+    KINDS.forEach(k => { this.colors[k.id] = cs.getPropertyValue(k.ink).trim() || '#333'; });
+    this.onKey = e => {
+      if (e.key === 'Escape') { this.closeSite(); this.closeLab(); }
+      if (this.state.siteIdx != null) {
+        if (e.key === 'ArrowRight') this.go(this.state.siteIdx + 1);
+        if (e.key === 'ArrowLeft') this.go(this.state.siteIdx - 1);
+      }
+    };
+    window.addEventListener('keydown', this.onKey);
+    const tick = ts => {
+      const dt = this.lastTs ? Math.min(50, ts - this.lastTs) : 16;
+      this.lastTs = ts;
+      this.moveFish(dt, ts);
+      this.drawSpec();
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+    window.removeEventListener('keydown', this.onKey);
+    this.stopAll();
+  }
+
+  componentDidUpdate(_, prev) {
+    if (this.state.labOpen && !prev.labOpen) {
+      Object.keys(this.canvasRefs).forEach(k => this.clearCanvas(k));
+      FREQS.forEach(f => KINDS.forEach(k => this.getAudio(k.id + '_' + f.hz)));
+    }
+  }
+
+  moveFish(dt, ts) {
+    const el = this.fishRef.current;
+    if (!el) return;
+    const swims = this.props.fishSwims ?? true;
+    if (swims && !this.fishPaused && !this.state.labOpen && this.state.siteIdx == null) {
+      this.fishX += dt * 0.018;
+      if (this.fishX > 990) {
+        this.fishX = 10;
+        this.setState(s => ({ species: ((s.species || 0) + 1) % SPECIES.length }));
+      }
+    }
+    const bob = swims ? Math.sin(ts / 450) * 3 : 0;
+    const fade = swims ? Math.max(0, Math.min(1, (this.fishX - 10) / 60, (990 - this.fishX) / 60)) : 1;
+    el.style.left = (this.fishX / W) * 100 + '%';
+    el.style.top = ((yAt(this.fishX) + 4 + bob) / H) * 100 + '%';
+    el.style.opacity = fade;
+    el.style.pointerEvents = fade < 0.3 ? 'none' : 'auto';
+  }
+
+  getAudio(key) {
+    if (this.audios[key]) return this.audios[key];
+    const el = new Audio('uploads/' + key + '.wav');
+    el.preload = 'metadata';
+    const upd = () => this.setState(s => ({ times: { ...s.times, [key]: { cur: el.currentTime, dur: el.duration } } }));
+    el.addEventListener('loadedmetadata', upd);
+    el.addEventListener('timeupdate', upd);
+    el.addEventListener('ended', () => { if (this.state.playing === key) this.setState({ playing: null }); });
+    this.audios[key] = { el };
+    return this.audios[key];
+  }
+
+  async toggle(key) {
+    const a = this.getAudio(key);
+    if (this.state.playing === key) { a.el.pause(); this.setState({ playing: null }); return; }
+    if (!this.actx) this.actx = new (window.AudioContext || window.webkitAudioContext)();
+    if (this.actx.state === 'suspended') await this.actx.resume();
+    if (!a.analyser) {
+      const src = this.actx.createMediaElementSource(a.el);
+      const an = this.actx.createAnalyser();
+      an.fftSize = 8192; an.smoothingTimeConstant = 0.5;
+      src.connect(an); an.connect(this.actx.destination);
+      a.analyser = an; a.data = new Uint8Array(an.frequencyBinCount);
+    }
+    this.stopAll();
+    if (a.el.ended || a.el.currentTime >= (a.el.duration || Infinity)) a.el.currentTime = 0;
+    this.clearCanvas(key);
+    a.el.play();
+    this.setState({ playing: key });
+  }
+
+  stopAll() { Object.values(this.audios).forEach(a => a.el.pause()); }
+
+  clearCanvas(key) {
+    const c = this.canvasRefs[key] && this.canvasRefs[key].current;
+    if (!c || !this.colors) return;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = this.colors.bg; ctx.fillRect(0, 0, c.width, c.height);
+  }
+
+  drawSpec() {
+    const key = this.state.playing;
+    if (!key || !this.actx) return;
+    const a = this.audios[key], c = this.canvasRefs[key].current;
+    if (!a || !a.analyser || !c || a.el.paused) return;
+    const ctx = c.getContext('2d'), w = c.width, h = c.height, step = 2;
+    ctx.drawImage(c, -step, 0);
+    ctx.fillStyle = this.colors.bg; ctx.fillRect(w - step, 0, step, h);
+    a.analyser.getByteFrequencyData(a.data);
+    const binHz = this.actx.sampleRate / a.analyser.fftSize, maxHz = this.maxHz();
+    ctx.fillStyle = this.colors[key.split('_')[0]];
+    for (let y = 0; y < h; y++) {
+      const v = a.data[Math.round(((1 - y / h) * maxHz) / binHz)] / 255;
+      if (v > 0.05) { ctx.globalAlpha = Math.pow(v, 1.6); ctx.fillRect(w - step, y, step, 1); }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  go(i) {
+    if (i < 0 || i >= SITES.length) return;
+    this.setState({ siteIdx: i });
+  }
+  closeSite = () => { if (this.state.siteIdx != null) this.setState({ siteIdx: null }); };
+  closeLab = () => { if (this.state.labOpen) { this.stopAll(); this.setState({ labOpen: false, playing: null }); } };
+
+  renderVals() {
+    const { siteIdx, hover, playing, times, videoFailed, labOpen } = this.state;
+    const always = this.props.alwaysShowNames ?? false;
+    const maxHz = this.maxHz();
+    const markers = SITES.map((s, i) => {
+      const x = siteX(i), y = yAt(x), show = always || hover === i;
+      const above = always ? i % 2 === 1 : y > 190;
+      return {
+        n: s.n, name: s.name, aria: 'Site ' + s.n + ': ' + s.name,
+        left: (x / W) * 100 + '%', top: (y / H) * 100 + '%',
+        labelAbove: show && above, labelBelow: show && !above,
+        open: () => this.go(i), enter: () => this.setState({ hover: i }),
+      };
+    });
+    const s = siteIdx != null ? SITES[siteIdx] : null;
+    const site = s ? {
+      n: s.n, name: s.name, aria: 'Site ' + s.n + ': ' + s.name,
+      video: 'videos/site-' + s.n + '.mp4',
+      noteText: s.note || 'Add a note about this site: what you see and hear, and why it matters for salmon.',
+    } : {};
+    const failed = s ? !!videoFailed[s.n] : false;
+    const ready = s ? !!this.state.videoReady?.[s.n] : false;
+    const rows = FREQS.map(f => ({
+      hz: f.hz, label: f.label,
+      players: KINDS.map(k => {
+        const key = k.id + '_' + f.hz, t = times[key];
+        return {
+          title: k.title, sub: k.sub, aria: (playing === key ? 'Pause ' : 'Play ') + k.title + ' at ' + f.hz + ' Hz',
+          isPlaying: playing === key, notPlaying: playing !== key,
+          time: t && isFinite(t.dur) ? fmt(t.cur) + ' / ' + fmt(t.dur) : '–:––',
+          canvasRef: this.canvasRefs[key], toggle: () => this.toggle(key),
+          guide: Math.min(98, (f.hz / maxHz) * 100) + '%', guideColor: 'var(' + k.ink + ')',
+        };
+      }),
+    }));
+    return {
+      riverPath: this.riverPath, markers, rows, labOpen,
+      maxHzLabel: '0–' + maxHz + ' Hz',
+      fishRef: this.fishRef, fish: SPECIES[this.state.species || 0],
+      fishEnter: () => { this.fishPaused = true; }, fishLeave: () => { this.fishPaused = false; },
+      leave: () => this.setState({ hover: null }),
+      openLab: () => this.setState({ labOpen: true, siteIdx: null }),
+      closeLab: this.closeLab, closeSite: this.closeSite,
+      stop: e => e.stopPropagation(),
+      hasSite: !!s, site, showVideo: !!s && !failed, showPlaceholder: !!s && (failed || !ready),
+      videoRef: this.videoRef,
+      isFirst: siteIdx === 0, isLast: siteIdx === SITES.length - 1,
+      prevSite: () => this.go(siteIdx - 1), nextSite: () => this.go(siteIdx + 1),
+      dots: SITES.map((d, i) => ({
+        go: () => this.go(i), aria: 'Go to site ' + d.n,
+        size: i === siteIdx ? '14px' : '9px',
+        color: i === siteIdx ? 'var(--color-accent)' : 'var(--color-neutral-300)',
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

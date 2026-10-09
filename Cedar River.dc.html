@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/organic-83166d74-9f86-4d7b-9251-ec9a55ac9333/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&amp;family=Figtree:wght@400;600;700&amp;display=swap">
+  <script src="_ds/organic-83166d74-9f86-4d7b-9251-ec9a55ac9333/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+    a { color: var(--color-accent-700); }
+    a:hover { color: var(--color-accent-900); }
+  </style>
+</helmet>
+
+<div ref="{{ sceneRef }}" data-screen-label="River" style="position: relative; width: 100vw; height: 100vh; overflow: hidden; background: var(--color-accent-2-800);">
+
+  {{ scene }}
+
+  <div style="position: absolute; bottom: 20px; left: 20px; z-index: 3; background: var(--color-bg); border-radius: var(--radius-lg); padding: 16px 22px; box-shadow: var(--shadow-md); max-width: min(540px, calc(100vw - 40px)); display: flex; flex-direction: column; gap: 6px;">
+    
+    <h1 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(24px, 2.6vw, 32px); line-height: 1.1; margin: 0; text-wrap: balance;">Journey up the Cedar River</h1><p style="margin: 0; font-size: 14px; line-height: 1.5; text-wrap: pretty; font-family: Tahoma;">The Cedar River is home to many salmon. Every October, salmon travel upstream along the river to return to the place where they were born. They find mates, reproduce, and eventually die. Their bodies nourish the surrounding landscape and provide nutrients that help support the entire ecosystem.<br>Baby salmon born here will remember the scent of the river and find their way back years later.</p>
+  </div>
+
+  <div style="position: absolute; left: {{ mouthLabel.left }}; top: 16px; z-index: 3; background: var(--color-bg); border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-sm); white-space: nowrap;">↑ downstream · Lake Washington</div>
+  <div style="position: absolute; right: 20px; top: 16px; z-index: 3; background: var(--color-bg); border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-sm); white-space: nowrap;">upstream · toward the Cascades ↘</div>
+  <div style="position: absolute; right: 12px; bottom: 8px; z-index: 3; font-size: 11px; background: var(--color-bg); border-radius: 999px; padding: 2px 8px; opacity: 0.85;">River course © OpenStreetMap contributors</div>
+
+  <div ref="{{ splashARef }}" style="position: absolute; left: 0; top: 0; width: 40px; height: 18px; border-radius: 50%; border: 2px solid oklch(0.96 0.02 200); transform: translate(-50%, -50%) scale(0); opacity: 0; pointer-events: none; z-index: 1;"></div>
+  <div ref="{{ splashBRef }}" style="position: absolute; left: 0; top: 0; width: 40px; height: 18px; border-radius: 50%; border: 2px solid oklch(0.96 0.02 200); transform: translate(-50%, -50%) scale(0); opacity: 0; pointer-events: none; z-index: 1;"></div>
+  <div style="position: absolute; left: {{ bear.left }}; top: {{ bear.top }}; z-index: 1; pointer-events: none; transform: translate(-50%, -100%);">
+    <div ref="{{ bearBubbleRef }}" style="position: absolute; left: 50%; top: -30px; transform: translateX(-50%); background: var(--color-bg); color: var(--color-accent-800); font-family: var(--font-heading); font-size: 16px; padding: 2px 10px; border-radius: 999px; box-shadow: var(--shadow-sm); opacity: 0; white-space: nowrap;">grr!</div>
+    <svg width="88" height="60" viewBox="0 0 64 44" style="display: block; overflow: visible; transform: scaleX({{ bear.sx }});">
+      <ellipse cx="31" cy="42" rx="25" ry="3" style="fill: rgba(28, 34, 24, 0.25);"></ellipse>
+      <rect x="13" y="26" width="8" height="16" rx="4" style="fill: oklch(0.24 0.02 50);"></rect>
+      <rect x="35" y="26" width="8" height="16" rx="4" style="fill: oklch(0.24 0.02 50);"></rect>
+      <ellipse cx="28" cy="24" rx="20" ry="13" style="fill: oklch(0.3 0.02 50);"></ellipse>
+      <circle cx="36" cy="15" r="7.5" style="fill: oklch(0.3 0.02 50);"></circle>
+      <rect x="18" y="28" width="8" height="14" rx="4" style="fill: oklch(0.3 0.02 50);"></rect>
+      <g ref="{{ bearHeadRef }}" style="transform-origin: 44px 18px;">
+        <circle cx="46.5" cy="8.5" r="3.2" style="fill: oklch(0.3 0.02 50);"></circle>
+        <circle cx="46.5" cy="8.5" r="1.5" style="fill: oklch(0.45 0.04 40);"></circle>
+        <circle cx="50.5" cy="16.5" r="8.6" style="fill: oklch(0.32 0.02 50);"></circle>
+        <ellipse cx="57.5" cy="19.5" rx="5.4" ry="3.8" style="fill: oklch(0.62 0.05 60);"></ellipse>
+        <circle cx="62" cy="18.4" r="1.7" style="fill: oklch(0.16 0.01 50);"></circle>
+        <circle cx="52.5" cy="14" r="1.2" style="fill: oklch(0.12 0.01 50);"></circle>
+        <circle cx="52.9" cy="13.6" r="0.4" style="fill: oklch(0.95 0.01 80);"></circle>
+      </g>
+      <g ref="{{ bearPawRef }}" style="transform-origin: 44px 22px;">
+        <rect x="40.5" y="20" width="8" height="21" rx="4" style="fill: oklch(0.34 0.02 50);"></rect>
+        <path d="M41.5 40 L41 43 M44.5 40.5 L44.5 43.5 M47.5 40 L48 43" style="stroke: oklch(0.9 0.02 80); stroke-width: 0.9; stroke-linecap: round;"></path>
+      </g>
+    </svg>
+  </div>
+  <button ref="{{ fishRef }}" onClick="{{ openLab }}" onMouseEnter="{{ fishEnter }}" onMouseLeave="{{ fishLeave }}" aria-label="Open the fish listening lab" style="position: absolute; left: 30%; top: 55%; transform: translate(-50%, -50%); z-index: 1; background: transparent; border: 0; padding: 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+    <span class="tag tag-accent" style="white-space: nowrap; box-shadow: var(--shadow-sm);">{{ fish.name }} · listen</span>
+    <svg ref="{{ fishBodyRef }}" width="78" height="30" viewBox="0 0 62 24" style="display: block; overflow: visible; filter: drop-shadow(0 5px 3px rgba(20, 30, 30, 0.28));">
+      <defs>
+        <linearGradient id="salmonBody" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" style="stop-color: {{ fish.back }};"></stop>
+          <stop offset="0.5" style="stop-color: {{ fish.side }};"></stop>
+          <stop offset="1" style="stop-color: {{ fish.belly }};"></stop>
+        </linearGradient>
+      </defs>
+      <path d="M34 5.4 L30.5 0.8 L25.5 5.7 Z" style="fill: {{ fish.back }};"></path>
+      <path d="M19.5 7.6 L17.6 5.4 L16.3 8.4 Z" style="fill: {{ fish.back }};"></path>
+      <path d="M33 18.6 L30 22.6 L27 18.4 Z" style="fill: {{ fish.back }};"></path>
+      <path d="M60 12 C58 8 52 6 44 5.5 C36 5 26 5.5 18 8 L12 10 L3.5 3 L6.8 12 L3.5 21 L12 14 L18 16 C26 18.5 36 19 44 18.5 C52 18 58 16 60 12 Z" style="fill: url(#salmonBody); stroke: oklch(0.28 0.02 60); stroke-width: 0.7; stroke-linejoin: round;"></path>
+      <path d="M31 7 L29 17.6 M37 6.2 L35 18.4 M43 6 L41 18.4" style="stroke: {{ fish.bar }}; stroke-width: 2.4; stroke-linecap: round; opacity: {{ fish.barOpacity }};"></path>
+      <path d="M60 12 C58 8 52 6 48.5 5.9 Q45.6 12 48.5 18.1 C52 18 58 16 60 12 Z" style="fill: {{ fish.head }}; opacity: 0.92;"></path>
+      <path d="M48.5 6.6 Q46.2 12 48.5 17.4" style="fill: none; stroke: oklch(0.28 0.02 60); stroke-width: 0.6; opacity: 0.7;"></path>
+      <path d="M45.5 14.5 L41 18.6 L40.5 14.6 Z" style="fill: {{ fish.back }}; opacity: 0.8;"></path>
+      <circle cx="54.4" cy="10.4" r="1.35" style="fill: oklch(0.18 0.01 60);"></circle>
+      <circle cx="54.8" cy="10" r="0.4" style="fill: oklch(0.95 0.01 80);"></circle>
+    </svg>
+  </button>
+
+  <sc-for list="{{ markers }}" as="m" hint-placeholder-count="10">
+    <div style="position: absolute; left: {{ m.left }}; top: {{ m.top }}; transform: translate(-50%, -50%); z-index: {{ m.z }};">
+      <button aria-label="{{ m.aria }}" onClick="{{ m.open }}" onMouseEnter="{{ m.enter }}" onMouseLeave="{{ leave }}" onFocus="{{ m.enter }}" onBlur="{{ leave }}" style="width: 38px; height: 38px; border-radius: 999px; border: 3px solid var(--color-accent); background: var(--color-bg); color: var(--color-accent-800); font-family: var(--font-heading); font-size: 14px; cursor: pointer; box-shadow: var(--shadow-md); display: grid; place-items: center; padding: 0;" style-hover="background: var(--color-accent); color: var(--color-bg);">{{ m.n }}</button>
+      <sc-if value="{{ m.labelBelow }}" hint-placeholder-val="{{ false }}">
+        <div style="position: absolute; left: 50%; top: 46px; transform: translateX(-50%); white-space: nowrap; pointer-events: none; background: var(--color-bg); border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-sm);">{{ m.name }}</div>
+      </sc-if>
+      <sc-if value="{{ m.labelAbove }}" hint-placeholder-val="{{ false }}">
+        <div style="position: absolute; left: 50%; bottom: 46px; transform: translateX(-50%); white-space: nowrap; pointer-events: none; background: var(--color-bg); border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-sm);">{{ m.name }}</div>
+      </sc-if>
+    </div>
+  </sc-for>
+
+  <sc-if value="{{ hasSite }}" hint-placeholder-val="{{ false }}">
+    <div class="dialog-backdrop" onClick="{{ closeSite }}" style="z-index: 50;">
+      <div class="dialog" role="dialog" aria-modal="true" aria-label="{{ site.aria }}" onClick="{{ stop }}" style="width: auto; max-width: min(860px, 100%); max-height: 94vh; overflow: auto; padding: var(--space-6); display: flex; flex-direction: row; flex-wrap: wrap; align-items: stretch; gap: var(--space-6);">
+        <div style="position: relative; flex: none; height: min(calc(94vh - 2 * var(--space-6) - 8px), 760px); max-width: 100%; aspect-ratio: 9 / 16; border-radius: var(--radius-lg); overflow: hidden; background: var(--color-neutral-900); margin: 0 auto;">
+          <sc-if value="{{ showVideo }}" hint-placeholder-val="{{ false }}">
+            <video src="{{ site.video }}" controls="{{ true }}" autoPlay="{{ true }}" playsInline="{{ true }}" ref="{{ videoRef }}" style="width: 100%; height: 100%; display: block; object-fit: cover;"></video>
+          </sc-if>
+          <sc-if value="{{ showPlaceholder }}" hint-placeholder-val="{{ true }}">
+            <div style="position: absolute; inset: 0; display: grid; place-items: center; background: repeating-linear-gradient(135deg, var(--color-accent-2-200) 0 14px, var(--color-accent-2-100) 14px 28px);">
+              <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; background: var(--color-bg); padding: 6px 12px; border-radius: 999px; color: var(--color-accent-2-900); text-align: center;">9:16 video · {{ site.video }}</span>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="flex: 1 1 260px; min-width: 0; max-width: 360px; display: flex; flex-direction: column; gap: var(--space-4);">
+        <div style="display: flex; align-items: flex-start; gap: var(--space-3);">
+          <div style="display: flex; flex-direction: column; gap: var(--space-1);">
+            <span class="card-kicker" style="font-size: 12px;">Site {{ site.n }} of 10</span>
+            <span class="dialog-title" style="font-size: 28px; line-height: 1.15;">{{ site.name }}</span>
+          </div>
+          <button class="btn btn-ghost btn-icon" onClick="{{ closeSite }}" aria-label="Close" style="margin-left: auto; color: var(--color-text);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+          </button>
+        </div>
+
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 640px; text-wrap: pretty;">{{ site.noteText }}</p>
+
+        <div style="display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; margin-top: auto;">
+          <button class="btn btn-secondary" onClick="{{ prevSite }}" disabled="{{ isFirst }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+            Downstream
+          </button>
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <sc-for list="{{ dots }}" as="d" hint-placeholder-count="10">
+              <button onClick="{{ d.go }}" aria-label="{{ d.aria }}" style="width: {{ d.size }}; height: {{ d.size }}; border-radius: 999px; border: 0; padding: 0; cursor: pointer; background: {{ d.color }};"></button>
+            </sc-for>
+          </div>
+          <button class="btn btn-secondary" onClick="{{ nextSite }}" disabled="{{ isLast }}">
+            Upstream
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+          </button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ labOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="dialog-backdrop" onClick="{{ closeLab }}" style="z-index: 50;">
+      <div class="dialog" role="dialog" aria-modal="true" aria-label="What a fish hears" onClick="{{ stop }}" style="width: min(960px, 100%); max-height: 92vh; overflow: auto; padding: var(--space-6); gap: var(--space-4);">
+        <div style="display: flex; align-items: flex-start; gap: var(--space-3);">
+          <div style="display: flex; flex-direction: column; gap: var(--space-2); max-width: 640px;">
+            <span class="dialog-title" style="font-size: 30px;">What a fish hears</span>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55; text-wrap: pretty;">We played three tones through an underwater speaker: 55, 100 and 410 Hz. Beside each one is the electrical activity from a fish's brain at the same frequency. Play them one after the other and listen for what changes.</p>
+            <span class="tag tag-neutral" style="align-self: flex-start; font-size: 12px;">The fish brain recordings were made in the lab, not in the Cedar River.</span>
+          </div>
+          <button class="btn btn-ghost btn-icon" onClick="{{ closeLab }}" aria-label="Close" style="margin-left: auto; color: var(--color-text);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+          </button>
+        </div>
+
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+            <div style="display: flex; align-items: baseline; gap: var(--space-2);">
+              <span style="font-family: var(--font-heading); font-size: 32px; line-height: 1;">{{ r.hz }}</span>
+              <span style="font-size: 14px; font-weight: 600;">Hz</span>
+              <span style="font-size: 14px; opacity: 0.75;">· {{ r.label }}</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-3);">
+              <sc-for list="{{ r.players }}" as="p" hint-placeholder-count="2">
+                <div style="background: var(--color-bg); border-radius: var(--radius-md); padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-3);">
+                  <div style="display: flex; align-items: center; gap: var(--space-3);">
+                    <button class="btn btn-primary btn-icon" onClick="{{ p.toggle }}" aria-label="{{ p.aria }}" style="width: 44px; height: 44px; border-radius: 999px; flex: none;">
+                      <sc-if value="{{ p.isPlaying }}" hint-placeholder-val="{{ false }}">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="4" width="4" height="16" rx="1"></rect><rect x="6" y="4" width="4" height="16" rx="1"></rect></svg>
+                      </sc-if>
+                      <sc-if value="{{ p.notPlaying }}" hint-placeholder-val="{{ true }}">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                      </sc-if>
+                    </button>
+                    <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+                      <span style="font-weight: 700; font-size: 15px;">{{ p.title }}</span>
+                      <span style="font-size: 13px; opacity: 0.75;">{{ p.sub }}</span>
+                    </div>
+                    <span style="margin-left: auto; font-size: 13px; font-variant-numeric: tabular-nums; opacity: 0.75;">{{ p.time }}</span>
+                  </div>
+                  <div style="position: relative; border-radius: var(--radius-sm); overflow: hidden;">
+                    <canvas ref="{{ p.canvasRef }}" width="480" height="120" style="width: 100%; height: 120px; display: block; background: var(--color-surface);"></canvas>
+                    <div style="position: absolute; left: 0; right: 0; bottom: {{ p.guide }}; border-top: 2px dashed {{ p.guideColor }}; opacity: 0.55; pointer-events: none;"></div>
+                    <span style="position: absolute; left: 8px; bottom: {{ p.guide }}; transform: translateY(-2px); white-space: nowrap; font-size: 11px; font-weight: 700; color: {{ p.guideColor }}; pointer-events: none;">{{ r.hz }} Hz</span>
+                    <span style="position: absolute; right: 8px; top: 6px; font-size: 11px; opacity: 0.6; pointer-events: none;">{{ maxHzLabel }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;fontPair&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Organic (Caprasimo + Figtree)&quot;,&quot;Field journal (Young Serif + Instrument Sans)&quot;,&quot;Field guide (Bitter + Source Sans 3)&quot;,&quot;Editorial (DM Serif Display + DM Sans)&quot;,&quot;Sketchbook (Caveat Brush + Nunito)&quot;,&quot;Playful (Shrikhand + Nunito)&quot;],&quot;default&quot;:&quot;Field journal (Young Serif + Instrument Sans)&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;fishSwims&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;alwaysShowNames&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;spectrogramMaxHz&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;600&quot;,&quot;1000&quot;],&quot;default&quot;:&quot;600&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+// Site positions [lon, lat] are approximate — replace with your GPS points. Markers snap to the river.
+const SITES = [
+  { n: '01', name: 'Cedar River', ll: [-122.2135, 47.4945], note: '' },
+  { n: '02', name: 'A bush on the Cedar River', ll: [-122.2111, 47.4878], note: '' },
+  { n: '03', name: 'Cedar River, further up', ll: [-122.2070, 47.4847], note: '' },
+  { n: '04', name: 'Renton Library', ll: [-122.2021, 47.4819], note: '' },
+  { n: '05', name: 'Cedar River Park, under the highway', ll: [-122.1985, 47.4806], note: '' },
+  { n: '06', name: 'Cedar River Park', ll: [-122.1941, 47.4795], note: '' },
+  { n: '07', name: 'Riverview Park, site 1', ll: [-122.1834, 47.4767], note: '' },
+  { n: '08', name: 'Riverview Park, site 2', ll: [-122.1782, 47.4761], note: '' },
+  { n: '09', name: "Belmondo's Reach, point 1", ll: [-122.0696, 47.4478], note: '' },
+  { n: '10', name: "Belmondo's Reach, point 2", ll: [-122.0693, 47.4454], note: '' },
+];
+// Cedar River centerline, upstream → mouth (OpenStreetMap relation 6818762, simplified)
+const RIVER = [[-122.0554,47.4358],[-122.0557,47.4371],[-122.0562,47.4379],[-122.0576,47.4386],[-122.0586,47.4387],[-122.0591,47.4385],[-122.0609,47.4375],[-122.0616,47.4374],[-122.0625,47.4381],[-122.0643,47.44],[-122.0654,47.44],[-122.0671,47.4391],[-122.0674,47.4392],[-122.0679,47.4397],[-122.0694,47.4409],[-122.07,47.4416],[-122.0717,47.4426],[-122.0719,47.4432],[-122.0717,47.4437],[-122.0693,47.4454],[-122.0689,47.4463],[-122.069,47.4471],[-122.0696,47.4478],[-122.0714,47.4483],[-122.073,47.4483],[-122.0735,47.4489],[-122.0728,47.4504],[-122.0714,47.4511],[-122.0713,47.4513],[-122.0723,47.4527],[-122.0739,47.4531],[-122.0748,47.4536],[-122.0758,47.4538],[-122.0769,47.4548],[-122.0771,47.4552],[-122.077,47.4555],[-122.0761,47.4562],[-122.0752,47.4568],[-122.0752,47.4572],[-122.0768,47.4578],[-122.0788,47.4582],[-122.0792,47.4584],[-122.0793,47.4586],[-122.0793,47.4599],[-122.0796,47.4609],[-122.0793,47.4628],[-122.0795,47.4634],[-122.0815,47.4648],[-122.0835,47.4665],[-122.0847,47.4667],[-122.0854,47.4666],[-122.0862,47.4663],[-122.0869,47.4652],[-122.0871,47.4641],[-122.0878,47.4632],[-122.0909,47.4623],[-122.0926,47.4624],[-122.0936,47.4628],[-122.0964,47.4634],[-122.0993,47.4629],[-122.1006,47.463],[-122.1024,47.4636],[-122.1036,47.4642],[-122.1041,47.4646],[-122.106,47.4654],[-122.1074,47.4663],[-122.1132,47.4648],[-122.1166,47.4647],[-122.1173,47.4641],[-122.1183,47.4636],[-122.121,47.4636],[-122.1229,47.4642],[-122.1231,47.4645],[-122.1245,47.4653],[-122.125,47.4654],[-122.1279,47.465],[-122.1293,47.4644],[-122.1302,47.4645],[-122.1314,47.465],[-122.1341,47.4666],[-122.1364,47.4675],[-122.1373,47.4678],[-122.14,47.468],[-122.1427,47.4698],[-122.1446,47.4707],[-122.1457,47.4707],[-122.1469,47.4704],[-122.1471,47.4702],[-122.1471,47.4695],[-122.1473,47.4692],[-122.1483,47.4691],[-122.1501,47.4697],[-122.1517,47.4699],[-122.1524,47.4704],[-122.1535,47.4716],[-122.1543,47.4717],[-122.1562,47.4714],[-122.1579,47.4708],[-122.1589,47.4699],[-122.1598,47.4689],[-122.1613,47.4661],[-122.1623,47.4657],[-122.1628,47.4657],[-122.1645,47.4663],[-122.1665,47.4673],[-122.1676,47.4685],[-122.1678,47.4692],[-122.1677,47.4708],[-122.1681,47.4716],[-122.1685,47.4721],[-122.1697,47.4729],[-122.1706,47.4732],[-122.1735,47.4734],[-122.1743,47.4737],[-122.177,47.4751],[-122.1776,47.4758],[-122.1782,47.4761],[-122.1804,47.4769],[-122.1827,47.4769],[-122.1834,47.4767],[-122.1846,47.476],[-122.1857,47.4758],[-122.1867,47.4758],[-122.1892,47.4765],[-122.19,47.4769],[-122.1903,47.4777],[-122.1908,47.4788],[-122.1912,47.479],[-122.1941,47.4795],[-122.1964,47.4796],[-122.1988,47.4806],[-122.2004,47.4809],[-122.2095,47.4861],[-122.2108,47.4872],[-122.2114,47.4883],[-122.2158,47.5006]];
+const BOUNDS = { lon0: -122.2165, lon1: -122.0685, lat0: 47.5006, lat1: 47.4405 };
+const STEP = 5;
+const SPECIES = [
+  { name: 'Sockeye', back: 'oklch(0.46 0.16 25)', side: 'oklch(0.6 0.2 28)', belly: 'oklch(0.7 0.13 32)', head: 'oklch(0.5 0.1 150)', bar: 'transparent', barOpacity: 0 },
+  { name: 'Chinook', back: 'oklch(0.34 0.05 60)', side: 'oklch(0.5 0.08 35)', belly: 'oklch(0.74 0.03 70)', head: 'oklch(0.33 0.04 60)', bar: 'transparent', barOpacity: 0 },
+  { name: 'Coho', back: 'oklch(0.36 0.06 220)', side: 'oklch(0.6 0.16 15)', belly: 'oklch(0.8 0.03 70)', head: 'oklch(0.4 0.07 160)', bar: 'transparent', barOpacity: 0 },
+  { name: 'Chum', back: 'oklch(0.44 0.07 115)', side: 'oklch(0.6 0.08 110)', belly: 'oklch(0.84 0.02 90)', head: 'oklch(0.42 0.06 110)', bar: 'oklch(0.45 0.12 320)', barOpacity: 0.75 },
+  { name: 'Pink', back: 'oklch(0.42 0.03 95)', side: 'oklch(0.72 0.07 10)', belly: 'oklch(0.88 0.02 60)', head: 'oklch(0.42 0.03 95)', bar: 'transparent', barOpacity: 0 },
+];
+const FREQS = [{ hz: 55, label: 'low' }, { hz: 100, label: 'middle' }, { hz: 410, label: 'high' }];
+const KINDS = [
+  { id: 'hydro', title: 'Speaker in water', sub: 'Hydrophone recording', ink: '--color-accent-2-700' },
+  { id: 'electro', title: 'Fish brain', sub: 'Neural activity', ink: '--color-accent-700' },
+];
+const WATER = 'oklch(0.66 0.06 205)', DEEP = 'oklch(0.56 0.07 215)', GLINT = 'oklch(0.92 0.03 200)';
+const rng = s => () => { s |= 0; s = (s + 0x6D2B79F5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+const fmt = t => { if (!isFinite(t)) t = 0; return Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0'); };
+
+class Component extends DCLogic {
+  state = { siteIdx: null, labOpen: false, hover: null, playing: null, times: {}, videoFailed: {}, videoReady: {}, species: 0, w: 0, h: 0 };
+  fishRef = React.createRef();
+  canvasRefs = (() => { const r = {}; FREQS.forEach(f => KINDS.forEach(k => { r[k.id + '_' + f.hz] = React.createRef(); })); return r; })();
+  audios = {};
+  fishU = 0.25; fishPaused = false;
+  fishBodyRef = React.createRef();
+  splashARef = React.createRef(); splashBRef = React.createRef();
+  splashes = [];
+  bearPawRef = React.createRef(); bearHeadRef = React.createRef(); bearBubbleRef = React.createRef();
+
+  sceneRef = el => {
+    if (this.ro) this.ro.disconnect();
+    if (!el) return;
+    const upd = () => { const w = el.clientWidth, h = el.clientHeight; if (w !== this.state.w || h !== this.state.h) this.setState({ w, h }); };
+    this.ro = new ResizeObserver(upd); this.ro.observe(el); upd();
+  };
+
+  videoRef = el => {
+    if (!el || el._wired) return;
+    el._wired = true;
+    const n = () => this.state.siteIdx != null ? SITES[this.state.siteIdx].n : null;
+    const ready = () => { const k = n(); if (k && !this.state.videoReady[k]) this.setState(st => ({ videoReady: { ...st.videoReady, [k]: true } })); };
+    el.addEventListener('loadeddata', ready);
+    el.addEventListener('canplay', ready);
+    el.addEventListener('error', () => { const k = n(); if (k) this.setState(st => ({ videoFailed: { ...st.videoFailed, [k]: true } })); });
+  };
+
+  geom() {
+    const w = this.state.w || 1200, h = this.state.h || 720, key = w + 'x' + h;
+    if (this.G && this.G.key === key) return this.G;
+    const { lon0, lon1, lat0, lat1 } = BOUNDS, c = Math.cos((47.47 * Math.PI) / 180);
+    const pad = { l: 50, r: 70, t: 60, b: 80 };
+    const aw = w - pad.l - pad.r, ah = h - pad.t - pad.b;
+    const k = Math.min(aw / ((lon1 - lon0) * c), ah / (lat0 - lat1));
+    const ox = pad.l + (aw - (lon1 - lon0) * c * k) / 2, oy = pad.t + (ah - (lat0 - lat1) * k) / 2;
+    const proj = ([lon, lat]) => [ox + (lon - lon0) * c * k, oy + (lat0 - lat) * k];
+    let pts = RIVER.slice().reverse().map(proj);
+    const [m0, m1] = pts, dx = m0[0] - m1[0], dy = m0[1] - m1[1], dl = Math.hypot(dx, dy);
+    pts.unshift([m0[0] + (dx / dl) * 500, m0[1] + (dy / dl) * 500]);
+    for (let it = 0; it < 2; it++) {
+      const o = [pts[0]];
+      for (let i = 0; i < pts.length - 1; i++) {
+        const a = pts[i], b = pts[i + 1];
+        o.push([a[0] * 0.75 + b[0] * 0.25, a[1] * 0.75 + b[1] * 0.25], [a[0] * 0.25 + b[0] * 0.75, a[1] * 0.25 + b[1] * 0.75]);
+      }
+      o.push(pts[pts.length - 1]); pts = o;
+    }
+    const S = [];
+    let acc = 0, next = 0;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const a = pts[i], b = pts[i + 1], L = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      if (!L) continue;
+      const tx = (b[0] - a[0]) / L, ty = (b[1] - a[1]) / L;
+      while (next <= acc + L) {
+        const t = (next - acc) / L;
+        S.push({ x: a[0] + (b[0] - a[0]) * t, y: a[1] + (b[1] - a[1]) * t, nx: -ty, ny: tx, ang: (Math.atan2(ty, tx) * 180) / Math.PI });
+        next += STEP;
+      }
+      acc += L;
+    }
+    const mouthIdx = Math.round(500 / STEP);
+    const nearest = (x, y) => { let bi = 0, bd = Infinity; S.forEach((p, i) => { const d = (p.x - x) ** 2 + (p.y - y) ** 2; if (d < bd) { bd = d; bi = i; } }); return bi; };
+    const gap = Math.ceil(42 / STEP);
+    const idx = SITES.map(s => nearest(...proj(s.ll)));
+    for (let i = 1; i < idx.length; i++) idx[i] = Math.max(idx[i], idx[i - 1] + gap);
+    for (let i = idx.length - 2; i >= 0; i--) idx[i] = Math.min(idx[i], idx[i + 1] - gap);
+    const rw = Math.max(34, Math.min(60, h * 0.065));
+    const distTo = (x, y) => { let bd = Infinity; for (let i = 0; i < S.length; i += 3) { const d = (S[i].x - x) ** 2 + (S[i].y - y) ** 2; if (d < bd) bd = d; } return Math.sqrt(bd); };
+    const jumps = []; let lastJ = -999;
+    for (let i = mouthIdx + 12; i < S.length - 12; i++) {
+      const d = Math.abs(((S[i + 8].ang - S[i - 8].ang + 540) % 360) - 180);
+      if (d > 48 && i - lastJ > 50 && S[i].x > 0 && S[i].x < w && S[i].y > 0 && S[i].y < h && !idx.some(s => Math.abs(s - i) < 5)) { jumps.push(i); lastJ = i; }
+    }
+    let bearJump = null, bear = { left: '-200px', top: '-200px', sx: 1 };
+    const siteDist = j => Math.min(...idx.map(s => Math.abs(s - j)));
+    const order = jumps.slice().sort((a, b) => siteDist(b) - siteDist(a));
+    for (const ji of order) {
+      const p = S[ji];
+      const cands = [1, -1].map(sd => ({ x: p.x + p.nx * sd * (rw / 2 + 30), y: p.y + p.ny * sd * (rw / 2 + 30) + 20 }))
+        .filter(c => c.x > 70 && c.x < w - 70 && c.y > 90 && c.y < h - 20 && distTo(c.x, c.y - 20) > rw / 2 + 18)
+        .sort((a, b) => distTo(b.x, b.y - 20) - distTo(a.x, a.y - 20));
+      if (cands.length) { const c = cands[0]; bearJump = ji; bear = { left: c.x + 'px', top: c.y + 'px', sx: p.x >= c.x ? 1 : -1 }; break; }
+    }
+    const off = rw / 2 + 34, placed = [];
+    const marks = idx.map((si, i) => {
+      const p = S[Math.min(S.length - 1, si)];
+      let best = null;
+      for (const side of [i % 2 ? 1 : -1, i % 2 ? -1 : 1]) {
+        for (const extra of [0, 14, 28]) {
+          const d = off + extra, x = p.x + p.nx * side * d, y = p.y + p.ny * side * d;
+          let score = Math.min(distTo(x, y), off) - extra * 0.3 - (side === (i % 2 ? 1 : -1) ? 0 : 4);
+          placed.forEach(q => { const dd = Math.hypot(q.x - x, q.y - y); if (dd < 50) score -= (50 - dd) * 2; });
+          if (x < 30 || x > w - 40 || y < 70 || y > h - 60) score -= 200;
+          if (x < Math.min(580, w - 40) && y > h - 230) score -= 200;
+          if (!best || score > best.score) best = { x, y, px: p.x, py: p.y, score };
+        }
+      }
+      placed.push(best);
+      return best;
+    });
+    this.G = { key, w, h, rw, S, mouthIdx, siteIdx: idx, distTo, mouthX: S[mouthIdx].x, jumps, bearJump, bear, marks };
+    return this.G;
+  }
+
+  buildScene(g) {
+    if (this.sceneKey === g.key) return this.sceneEl;
+    const e = React.createElement, r = rng(11), k = [], S = g.S;
+    let d = '';
+    for (let i = 0; i < S.length; i += 2) d += (d ? ' L' : 'M') + S[i].x.toFixed(1) + ' ' + S[i].y.toFixed(1);
+    const strokePath = (id, color, width, extra = {}) => k.push(e('path', { key: id, d, style: { fill: 'none', stroke: color, strokeWidth: width, strokeLinecap: 'round', strokeLinejoin: 'round', ...extra } }));
+    const along = off => { const p = S[Math.floor(r() * S.length)]; const o = off(); return [p.x + p.nx * o, p.y + p.ny * o]; };
+    for (let i = 0; i < (g.w * g.h) / 1800; i++) {
+      k.push(e('circle', { key: 'gr' + i, cx: r() * g.w, cy: r() * g.h, r: 3 + r() * 9, style: { fill: r() < 0.5 ? 'var(--color-accent-2-700)' : 'var(--color-accent-2-900)', opacity: 0.35 + r() * 0.3 } }));
+    }
+    strokePath('bank0', 'var(--color-neutral-200)', g.rw + 30);
+    strokePath('bank1', 'var(--color-neutral-300)', g.rw + 12);
+    strokePath('bed', 'var(--color-neutral-400)', g.rw);
+    const pc = ['var(--color-neutral-200)', 'var(--color-neutral-300)', 'var(--color-neutral-400)', 'var(--color-neutral-500)', 'var(--color-accent-200)', 'var(--color-neutral-600)'];
+    for (let i = 0; i < S.length * 5; i++) {
+      const [x, y] = along(() => (r() - 0.5) * (g.rw + 24)), rx = 1.2 + r() * 3.6;
+      k.push(e('ellipse', { key: 'p' + i, cx: x, cy: y, rx, ry: rx * (0.55 + r() * 0.35), transform: 'rotate(' + Math.round(r() * 180) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ')', style: { fill: pc[Math.floor(r() * pc.length)] } }));
+    }
+    strokePath('water', WATER, g.rw - 5, { opacity: 0.72 });
+    strokePath('deep', DEEP, g.rw * 0.4, { opacity: 0.45 });
+    strokePath('gl', GLINT, 1.6, { strokeDasharray: '14 60', opacity: 0.7 });
+    for (let i = 0; i < S.length / 6; i++) {
+      const [x, y] = along(() => (r() - 0.5) * g.rw * 0.7), rx = 2.5 + r() * 4.5;
+      k.push(e('ellipse', { key: 'rk' + i, cx: x, cy: y, rx, ry: rx * 0.7, style: { fill: 'var(--color-neutral-500)', stroke: GLINT, strokeWidth: 0.8, opacity: 0.8 } }));
+    }
+    g.jumps.forEach((ji, n) => {
+      const p = S[ji];
+      for (let j = -3; j <= 3; j++) {
+        const o = (j / 3) * g.rw * 0.46, x = p.x + p.nx * o + (r() - 0.5) * 3, y = p.y + p.ny * o + (r() - 0.5) * 3, rr = 3.5 + r() * 3;
+        k.push(e('ellipse', { key: 'bw' + n + 'f' + j, cx: x - p.ny * 3, cy: y + p.nx * 3, rx: rr * 1.5, ry: rr * 0.9, transform: 'rotate(' + (p.ang + 90).toFixed(1) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ')', style: { fill: GLINT, opacity: 0.85 } }));
+        k.push(e('ellipse', { key: 'bw' + n + 'r' + j, cx: x, cy: y, rx: rr, ry: rr * 0.8, style: { fill: r() < 0.5 ? 'var(--color-neutral-500)' : 'var(--color-neutral-600)', stroke: 'var(--color-neutral-700)', strokeWidth: 0.6 } }));
+      }
+    });
+    const clear = (x, y, R) => g.marks.every(m => Math.hypot(m.x - x, m.y - y) > R + 30);
+    const stems = [];
+    g.marks.forEach((m, i) => {
+      stems.push(e('line', { key: 'stem' + i, x1: m.px, y1: m.py, x2: m.x, y2: m.y, style: { stroke: 'var(--color-bg)', strokeWidth: 2.5, strokeDasharray: '3 4', strokeLinecap: 'round', opacity: 0.9 } }));
+      stems.push(e('circle', { key: 'pin' + i, cx: m.px, cy: m.py, r: 4, style: { fill: 'var(--color-accent)', stroke: 'var(--color-bg)', strokeWidth: 2 } }));
+    });
+    const trees = [];
+    for (const side of [-1, 1]) {
+      for (let i = 0; i < S.length; i += 7 + Math.floor(r() * 8)) {
+        const p = S[i], R = 11 + r() * 18, over = r() < 0.45;
+        const dist = g.rw / 2 + (over ? R * 0.3 : 16 + R * 0.9 + r() * 26);
+        const t = { x: p.x + p.nx * side * dist, y: p.y + p.ny * side * dist, R };
+        if (g.distTo(t.x, t.y) > g.rw / 2 + R * 0.25 && clear(t.x, t.y, R)) trees.push(t);
+        if (r() < 0.3) { const R2 = 9 + r() * 15, d2 = dist + R + R2 * 0.7 + r() * 22; const t2 = { x: p.x + p.nx * side * d2, y: p.y + p.ny * side * d2, R: R2 }; if (g.distTo(t2.x, t2.y) > g.rw / 2 + R2) trees.push(t2); }
+      }
+    }
+    for (let i = 0; i < (g.w * g.h) / 22000; i++) {
+      const x = r() * g.w, y = r() * g.h, R = 8 + r() * 15;
+      if (g.distTo(x, y) > g.rw / 2 + R + 30 && clear(x, y, R)) trees.push({ x, y, R });
+    }
+    trees.sort((a, b) => a.y - b.y);
+    trees.forEach((t, i) => k.push(e('circle', { key: 's' + i, cx: t.x + t.R * 0.28, cy: t.y + t.R * 0.34, r: t.R * 1.04, style: { fill: 'rgba(10, 14, 8, 0.35)' } })));
+    const tones = [['--color-accent-2-300', '--color-accent-2-200', '--color-accent-2-200'], ['--color-accent-2-400', '--color-accent-2-300', '--color-accent-2-200'], ['--color-accent-2-200', '--color-accent-2-200', '--color-accent-2-100']];
+    const v = n => 'var(' + n + ')';
+    trees.forEach((t, i) => {
+      const [c1, c2, c3] = tones[Math.floor(r() * tones.length)], C = (id, cx, cy, rr, fill, op) => k.push(e('circle', { key: 't' + i + id, cx, cy, r: rr, style: { fill, opacity: op == null ? 1 : op } }));
+      if (r() < 0.35) {
+        C('b', t.x, t.y, t.R, v('--color-accent-2-600'));
+        for (let j = 0; j < 9; j++) { const a = (j / 9) * Math.PI * 2 + r() * 0.3; C('sp' + j, t.x + Math.cos(a) * t.R * 0.72, t.y + Math.sin(a) * t.R * 0.72, t.R * 0.34, v('--color-accent-2-500')); }
+        C('r1', t.x - t.R * 0.08, t.y - t.R * 0.1, t.R * 0.72, v('--color-accent-2-400'));
+        for (let j = 0; j < 6; j++) { const a = (j / 6) * Math.PI * 2 + r(); C('q' + j, t.x - t.R * 0.1 + Math.cos(a) * t.R * 0.4, t.y - t.R * 0.12 + Math.sin(a) * t.R * 0.4, t.R * 0.24, v('--color-accent-2-300')); }
+        C('r2', t.x - t.R * 0.16, t.y - t.R * 0.2, t.R * 0.36, v('--color-accent-2-300'));
+        C('r3', t.x - t.R * 0.2, t.y - t.R * 0.24, t.R * 0.14, v('--color-accent-2-200'));
+        return;
+      }
+      C('b', t.x, t.y, t.R, v('--color-accent-2-500'));
+      const a0 = r() * Math.PI * 2, n1 = 7 + Math.floor(r() * 3);
+      for (let j = 0; j < n1; j++) { const a = a0 + (j / n1) * Math.PI * 2, rr = t.R * (0.34 + r() * 0.16); C('l' + j, t.x + Math.cos(a) * (t.R - rr * 0.95), t.y + Math.sin(a) * (t.R - rr * 0.95), rr, v(c1)); }
+      for (let j = 0; j < 6; j++) { const a = r() * Math.PI * 2, d = r() * t.R * 0.5; C('dk' + j, t.x + Math.cos(a) * d + t.R * 0.12, t.y + Math.sin(a) * d + t.R * 0.14, t.R * (0.1 + r() * 0.1), v('--color-accent-2-500'), 0.55); }
+      for (let j = 0; j < 5; j++) { const a = a0 + j * 1.3, d = t.R * (0.2 + r() * 0.3); C('m' + j, t.x - t.R * 0.15 + Math.cos(a) * d, t.y - t.R * 0.18 + Math.sin(a) * d, t.R * (0.22 + r() * 0.12), v(c2)); }
+      for (let j = 0; j < 4; j++) { const a = r() * Math.PI * 2, d = r() * t.R * 0.3; C('h' + j, t.x - t.R * 0.3 + Math.cos(a) * d, t.y - t.R * 0.34 + Math.sin(a) * d, t.R * (0.1 + r() * 0.1), v(c3), 0.9); }
+      for (let j = 0; j < 7; j++) { const a = r() * Math.PI * 2, d = r() * t.R * 0.85; C('s' + j, t.x + Math.cos(a) * d, t.y + Math.sin(a) * d, Math.max(0.8, t.R * 0.05), v(r() < 0.5 ? '--color-accent-2-100' : '--color-accent-2-600'), 0.7); }
+    });
+    k.push(...stems);
+    this.sceneKey = g.key;
+    this.sceneEl = e('svg', { width: g.w, height: g.h, viewBox: '0 0 ' + g.w + ' ' + g.h, style: { position: 'absolute', inset: 0, display: 'block' }, 'aria-hidden': true }, k);
+    return this.sceneEl;
+  }
+
+  applyFonts() {
+    const P = {
+      'Organic (Caprasimo + Figtree)': ['Caprasimo', 'Figtree', null],
+      'Field journal (Young Serif + Instrument Sans)': ['Young Serif', 'Instrument Sans', 'Young+Serif&family=Instrument+Sans:wght@400;600;700'],
+      'Field guide (Bitter + Source Sans 3)': ['Bitter', 'Source Sans 3', 'Bitter:wght@600;700&family=Source+Sans+3:wght@400;600;700'],
+      'Editorial (DM Serif Display + DM Sans)': ['DM Serif Display', 'DM Sans', 'DM+Serif+Display&family=DM+Sans:wght@400;600;700'],
+      'Sketchbook (Caveat Brush + Nunito)': ['Caveat Brush', 'Nunito', 'Caveat+Brush&family=Nunito:wght@400;600;700'],
+      'Playful (Shrikhand + Nunito)': ['Shrikhand', 'Nunito', 'Shrikhand&family=Nunito:wght@400;600;700'],
+    };
+    const key = this.props.fontPair ?? 'Field journal (Young Serif + Instrument Sans)';
+    if (this.fontKey === key) return;
+    this.fontKey = key;
+    const [hd, bd, q] = P[key] || P['Organic (Caprasimo + Figtree)'];
+    if (q && !document.querySelector('link[data-font="' + q + '"]')) {
+      const l = document.createElement('link'); l.rel = 'stylesheet'; l.dataset.font = q;
+      l.href = 'https://fonts.googleapis.com/css2?family=' + q + '&display=swap'; document.head.appendChild(l);
+    }
+    const r = document.documentElement.style;
+    r.setProperty('--font-heading', "'" + hd + "', Georgia, serif");
+    r.setProperty('--font-body', "'" + bd + "', system-ui, sans-serif");
+    r.setProperty('--font-heading-weight', hd === 'Bitter' ? '700' : '400');
+  }
+
+  maxHz() { return Number(this.props.spectrogramMaxHz ?? 600); }
+
+  componentDidMount() {
+    this.applyFonts();
+    const cs = getComputedStyle(document.documentElement);
+    this.colors = { bg: cs.getPropertyValue('--color-surface').trim() || '#ebddc5' };
+    KINDS.forEach(k => { this.colors[k.id] = cs.getPropertyValue(k.ink).trim() || '#333'; });
+    this.onKey = e => {
+      if (e.key === 'Escape') { this.closeSite(); this.closeLab(); }
+      if (this.state.siteIdx != null) {
+        if (e.key === 'ArrowRight') this.go(this.state.siteIdx + 1);
+        if (e.key === 'ArrowLeft') this.go(this.state.siteIdx - 1);
+      }
+    };
+    window.addEventListener('keydown', this.onKey);
+    const tick = ts => {
+      const dt = this.lastTs ? Math.min(50, ts - this.lastTs) : 16;
+      this.lastTs = ts;
+      this.moveFish(dt, ts);
+      this.drawSpec();
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+    if (this.ro) this.ro.disconnect();
+    window.removeEventListener('keydown', this.onKey);
+    this.stopAll();
+  }
+
+  componentDidUpdate(_, prev) {
+    this.applyFonts();
+    if (this.state.labOpen && !prev.labOpen) {
+      Object.keys(this.canvasRefs).forEach(k => this.clearCanvas(k));
+      FREQS.forEach(f => KINDS.forEach(k => this.getAudio(k.id + '_' + f.hz)));
+    }
+  }
+
+  moveFish(dt, ts) {
+    const el = this.fishRef.current, body = this.fishBodyRef.current;
+    if (!el) return;
+    const g = this.geom(), swims = this.props.fishSwims ?? true;
+    if (swims && !this.fishPaused && !this.state.labOpen && this.state.siteIdx == null) {
+      this.fishU += dt / 70000;
+      if (this.fishU > 1) { this.fishU = 0; this.setState(s => ({ species: (s.species + 1) % SPECIES.length })); }
+    }
+    const i0 = g.mouthIdx, i1 = g.S.length - 1;
+    const fi = Math.min(i1, i0 + this.fishU * (i1 - i0)), ia = Math.floor(fi), ib = Math.min(i1, ia + 1), t = fi - ia;
+    if (this.lastFi == null || fi < this.lastFi) this.lastFi = fi;
+    const hit = g.jumps.find(j => j - 7 > this.lastFi && j - 7 <= fi);
+    this.lastFi = fi;
+    const bearNear = g.bearJump != null && g.bearJump - 10 > (this.prevFi ?? fi) && g.bearJump - 10 <= fi;
+    this.prevFi = fi;
+    if (bearNear) this.bearT0 = ts;
+    if (hit != null && !(this.jumpT0 && ts - this.jumpT0 < 900)) {
+      this.jumpT0 = ts; this.jumpBig = hit === g.bearJump;
+      const s0 = g.S[Math.max(0, hit - 7)];
+      this.splashes = [{ el: this.splashARef.current, t0: ts, x: s0.x, y: s0.y }, { el: this.splashBRef.current, t0: ts + 760, x: g.S[Math.min(i1, hit + 9)].x, y: g.S[Math.min(i1, hit + 9)].y }];
+    }
+    const jt = this.jumpT0 ? (ts - this.jumpT0) / (this.jumpBig ? 1000 : 820) : 2, jh = (jt >= 0 && jt < 1 ? Math.sin(Math.PI * jt) : 0) * (this.jumpBig ? 1.5 : 1);
+    const bt = this.bearT0 ? (ts - this.bearT0) / 1700 : 2;
+    const paw = this.bearPawRef.current, head = this.bearHeadRef.current, bub = this.bearBubbleRef.current;
+    if (paw) { const sw = bt >= 0.25 && bt < 0.75 ? Math.sin(Math.PI * (bt - 0.25) / 0.5) : 0; paw.style.transform = 'rotate(' + (-95 * sw).toFixed(1) + 'deg)'; }
+    if (head) head.style.transform = 'rotate(' + (bt < 1 ? Math.sin(bt * Math.PI * 6) * 6 : Math.sin(ts / 900) * 3).toFixed(1) + 'deg)';
+    if (bub) bub.style.opacity = bt >= 0 && bt < 1 ? Math.min(1, Math.sin(Math.PI * bt) * 2).toFixed(2) : 0;
+    this.splashes.forEach(s => {
+      if (!s.el) return;
+      const age = (ts - s.t0) / 650;
+      if (age < 0 || age > 1) { s.el.style.opacity = 0; return; }
+      s.el.style.left = s.x + 'px'; s.el.style.top = s.y + 'px';
+      s.el.style.opacity = (1 - age).toFixed(2);
+      s.el.style.transform = 'translate(-50%, -50%) scale(' + (0.4 + age * 1.5).toFixed(2) + ')';
+    });
+    const A = g.S[ia], B = g.S[ib];
+    const raw = { x: A.x + (B.x - A.x) * t, y: A.y + (B.y - A.y) * t, nx: A.nx, ny: A.ny };
+    const L = g.S[Math.min(i1, ia + 6)], Bk = g.S[Math.max(0, ia - 6)];
+    const target = (Math.atan2(L.y - Bk.y, L.x - Bk.x) * 180) / Math.PI;
+    if (this.fishAng == null || this.fishU < 0.002) this.fishAng = target;
+    let da = ((target - this.fishAng + 540) % 360) - 180;
+    this.fishAng += da * Math.min(1, dt / 260);
+    if (!this.fishPos || this.fishU < 0.002) this.fishPos = { x: raw.x, y: raw.y };
+    const kp = Math.min(1, dt / 120);
+    this.fishPos.x += (raw.x - this.fishPos.x) * kp; this.fishPos.y += (raw.y - this.fishPos.y) * kp;
+    const p = { x: this.fishPos.x, y: this.fishPos.y, nx: raw.nx, ny: raw.ny, ang: this.fishAng };
+    const bob = swims ? Math.sin(ts / 700) * 3 : 0;
+    const fade = swims ? Math.max(0, Math.min(1, this.fishU / 0.03, (1 - this.fishU) / 0.03)) : 1;
+    el.style.left = p.x + p.nx * bob + 'px';
+    el.style.top = p.y + p.ny * bob - 12 - jh * 34 + 'px';
+    el.style.opacity = fade;
+    el.style.pointerEvents = fade < 0.3 ? 'none' : 'auto';
+    const na = ((p.ang + 540) % 360) - 180;
+    if (body) body.style.transform = 'rotate(' + na.toFixed(2) + 'deg)' + ' scale(' + (1 + jh * 0.16).toFixed(3) + ')' + (Math.abs(na) > 90 ? ' scaleY(-1)' : '') + ' rotate(' + (jh ? (0.5 - jt) * -30 : 0).toFixed(1) + 'deg) skewY(' + (Math.sin(ts / 260) * 3).toFixed(2) + 'deg)';
+    if (body) body.style.filter = 'drop-shadow(0 ' + (5 + jh * 30).toFixed(1) + 'px ' + (3 + jh * 5).toFixed(1) + 'px rgba(20, 30, 30, ' + (0.28 - jh * 0.12).toFixed(2) + '))';
+  }
+
+  getAudio(key) {
+    if (this.audios[key]) return this.audios[key];
+    const el = new Audio('uploads/' + key + '.wav');
+    el.preload = 'metadata';
+    const upd = () => this.setState(s => ({ times: { ...s.times, [key]: { cur: el.currentTime, dur: el.duration } } }));
+    el.addEventListener('loadedmetadata', upd);
+    el.addEventListener('timeupdate', upd);
+    el.addEventListener('ended', () => { if (this.state.playing === key) this.setState({ playing: null }); });
+    this.audios[key] = { el };
+    return this.audios[key];
+  }
+
+  async toggle(key) {
+    const a = this.getAudio(key);
+    if (this.state.playing === key) { a.el.pause(); this.setState({ playing: null }); return; }
+    if (!this.actx) this.actx = new (window.AudioContext || window.webkitAudioContext)();
+    if (this.actx.state === 'suspended') await this.actx.resume();
+    if (!a.analyser) {
+      const src = this.actx.createMediaElementSource(a.el);
+      const an = this.actx.createAnalyser();
+      an.fftSize = 8192; an.smoothingTimeConstant = 0.5;
+      src.connect(an); an.connect(this.actx.destination);
+      a.analyser = an; a.data = new Uint8Array(an.frequencyBinCount);
+    }
+    this.stopAll();
+    if (a.el.ended || a.el.currentTime >= (a.el.duration || Infinity)) a.el.currentTime = 0;
+    this.clearCanvas(key);
+    a.el.play();
+    this.setState({ playing: key });
+  }
+
+  stopAll() { Object.values(this.audios).forEach(a => a.el.pause()); }
+
+  clearCanvas(key) {
+    const c = this.canvasRefs[key] && this.canvasRefs[key].current;
+    if (!c || !this.colors) return;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = this.colors.bg; ctx.fillRect(0, 0, c.width, c.height);
+  }
+
+  drawSpec() {
+    const key = this.state.playing;
+    if (!key || !this.actx) return;
+    const a = this.audios[key], c = this.canvasRefs[key].current;
+    if (!a || !a.analyser || !c || a.el.paused) return;
+    const ctx = c.getContext('2d'), w = c.width, h = c.height, step = 2;
+    ctx.drawImage(c, -step, 0);
+    ctx.fillStyle = this.colors.bg; ctx.fillRect(w - step, 0, step, h);
+    a.analyser.getByteFrequencyData(a.data);
+    const binHz = this.actx.sampleRate / a.analyser.fftSize, maxHz = this.maxHz();
+    ctx.fillStyle = this.colors[key.split('_')[0]];
+    for (let y = 0; y < h; y++) {
+      const v = a.data[Math.round(((1 - y / h) * maxHz) / binHz)] / 255;
+      if (v > 0.05) { ctx.globalAlpha = Math.pow(v, 1.6); ctx.fillRect(w - step, y, step, 1); }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  go(i) { if (i >= 0 && i < SITES.length) this.setState({ siteIdx: i }); }
+  closeSite = () => { if (this.state.siteIdx != null) this.setState({ siteIdx: null }); };
+  closeLab = () => { if (this.state.labOpen) { this.stopAll(); this.setState({ labOpen: false, playing: null }); } };
+
+  renderVals() {
+    const { siteIdx, hover, playing, times, videoFailed, videoReady, labOpen } = this.state;
+    const g = this.geom(), always = this.props.alwaysShowNames ?? false, maxHz = this.maxHz();
+    const markers = SITES.map((s, i) => {
+      const mk = g.marks[i], x = mk.x, y = mk.y, show = always || hover === i;
+      const above = mk.y < mk.py;
+      return {
+        n: s.n, name: s.name, aria: 'Site ' + s.n + ': ' + s.name,
+        left: x + 'px', top: y + 'px', z: hover === i ? 6 : 2,
+        labelAbove: show && above, labelBelow: show && !above,
+        open: () => this.go(i), enter: () => this.setState({ hover: i }),
+      };
+    });
+    const s = siteIdx != null ? SITES[siteIdx] : null;
+    const site = s ? {
+      n: s.n, name: s.name, aria: 'Site ' + s.n + ': ' + s.name,
+      video: 'videos/site-' + s.n + '.mp4',
+      noteText: s.note || 'Add a note about this site: what you see and hear, and why it matters for salmon.',
+    } : {};
+    const failed = s ? !!videoFailed[s.n] : false, ready = s ? !!videoReady[s.n] : false;
+    const rows = FREQS.map(f => ({
+      hz: f.hz, label: f.label,
+      players: KINDS.map(k => {
+        const key = k.id + '_' + f.hz, t = times[key];
+        return {
+          title: k.title, sub: k.sub, aria: (playing === key ? 'Pause ' : 'Play ') + k.title + ' at ' + f.hz + ' Hz',
+          isPlaying: playing === key, notPlaying: playing !== key,
+          time: t && isFinite(t.dur) ? fmt(t.cur) + ' / ' + fmt(t.dur) : '–:––',
+          canvasRef: this.canvasRefs[key], toggle: () => this.toggle(key),
+          guide: Math.min(98, (f.hz / maxHz) * 100) + '%', guideColor: 'var(' + k.ink + ')',
+        };
+      }),
+    }));
+    return {
+      sceneRef: this.sceneRef, scene: this.buildScene(g), fishBodyRef: this.fishBodyRef, bear: g.bear, bearPawRef: this.bearPawRef, bearHeadRef: this.bearHeadRef, bearBubbleRef: this.bearBubbleRef, splashARef: this.splashARef, splashBRef: this.splashBRef,
+      mouthLabel: { left: Math.max(16, g.mouthX - 30) + 'px' },
+      markers, rows, labOpen, maxHzLabel: '0–' + maxHz + ' Hz',
+      fishRef: this.fishRef, fish: SPECIES[this.state.species],
+      fishEnter: () => { this.fishPaused = true; }, fishLeave: () => { this.fishPaused = false; },
+      leave: () => this.setState({ hover: null }),
+      openLab: () => this.setState({ labOpen: true, siteIdx: null }),
+      closeLab: this.closeLab, closeSite: this.closeSite,
+      stop: e => e.stopPropagation(),
+      hasSite: !!s, site, showVideo: !!s && !failed, showPlaceholder: !!s && (failed || !ready),
+      videoRef: this.videoRef,
+      isFirst: siteIdx === 0, isLast: siteIdx === SITES.length - 1,
+      prevSite: () => this.go(siteIdx - 1), nextSite: () => this.go(siteIdx + 1),
+      dots: SITES.map((d, i) => ({
+        go: () => this.go(i), aria: 'Go to site ' + d.n,
+        size: i === siteIdx ? '14px' : '9px',
+        color: i === siteIdx ? 'var(--color-accent)' : 'var(--color-neutral-300)',
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>
